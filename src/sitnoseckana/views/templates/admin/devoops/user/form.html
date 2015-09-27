@@ -1,0 +1,180 @@
+{% extends "admin/devoops/layout.html" %}
+
+
+{% block sidebar %}{%  endblock %}
+{% block sidebar-show %}sidebar-show{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+
+        </ol>
+        <div id="social" class="pull-right">
+            <a href="/admin/user" class="btn btn-primary btn">List</a>
+        </div>
+    </div>
+</div>
+
+<h2>{% if user %}{% fmt user %}: {{user.user_name}}{% else %}{% fmt new_user %}{% endif %}</h2>
+<div class="col-xs-12 col-sm-12">
+    <form id="user-form" class="form-horizontal" action="/admin/user{% if user %}/{{user.id}}/{{user.user_name}}{% endif %}" role="form" method="{% if user %}PUT{% else %}POST{% endif %}" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{user.id|default:0}}">
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt user_user_name %}</label>
+            <div class="col-sm-4">
+                <input name="user_name" type="text" class="form-control" placeholder="{% fmt user_user_name_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt user_user_name_tooltip %}" value="{{user.user_name}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt user_email %}</label>
+            <div class="col-sm-4">
+                <input name="email" type="text" class="form-control" placeholder="{% fmt user_email_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt user_email_tooltip %}" value="{{user.email}}">
+            </div>
+        </div>
+        {% if not user %}
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt user_password %}</label>
+            <div class="col-sm-4">
+                <input name="password" data-role="password-match" data-pass2="#pass2" type="password" class="form-control" placeholder="{% fmt user_password_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt user_password_tooltip %}" value="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt user_password_repeat %}</label>
+            <div class="col-sm-4">
+                <input id="pass2" name="password_repeat" type="password" class="form-control" placeholder="{% fmt user_password_repeat %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt user_password_repeat %}" value="">
+            </div>
+        </div>
+
+        {% endif %}
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt user_member %}</label>
+            <div class="col-sm-2">
+                <div class="toggle-switch toggle-switch-success">
+                    <label>
+                        <input type="hidden" name="member" value="false">
+                        <input name="member" type="checkbox" value="true" {% if is-memeber %} checked {% endif %}>
+                        <div class="toggle-switch-inner"></div>
+                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt user_admin %}</label>
+            <div class="col-sm-2">
+                <div class="toggle-switch toggle-switch-success">
+                    <label>
+                        <input type="hidden" name="admin" value="false">
+                        <input name="admin" type="checkbox" value="true" {% if is-admin %} checked {% endif %}>
+                        <div class="toggle-switch-inner"></div>
+                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div id="admin-member" class="alert alert-danger" role="alert" style="display:none;">
+            <span class="fa fa-exclamation-circle" aria-hidden="true"></span>
+            User must be admin or member
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt user_activated %}</label>
+            <div class="col-sm-2">
+                <div class="toggle-switch toggle-switch-success">
+                    <label>
+                        <input type="hidden" name="activated" value="false">
+                        <input name="activated" type="checkbox" value="true" {% if user.activated %} checked {% endif %}>
+                        <div class="toggle-switch-inner"></div>
+                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-sm-2">
+                <a href="/admin/user" class="btn btn-primary btn">{% fmt user_list %}</a>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-label-left">
+                    <span><i class="fa fa-clock-o"></i></span>
+                    {% fmt user_submit %}
+                </button>
+            </div>
+            <div class="col-sm-4">
+                <div id="submit-form-alert" class="alert alert-success col-sm-2 hidden" role="alert">
+                    <strong>Action</strong> complete.
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
+
+
+
+{% block custom-scripts %}
+<script type="text/javascript">
+    (function($){
+        var $pass1 = $('[data-role="password-match"]'),
+            $pass2 = $($pass1.attr('data-pass2'));
+            $pass1.on('keyup',function(){
+                var val2 = $pass2.val();
+                if (val2 !== ''){
+                    var val1 = $pass1.val();
+                    if (val1 !== val2){
+                        $pass1.addClass('error').attr('style', 'border-color: red;');
+                        $pass2.addClass('error').attr('style', 'border-color: red;');
+                    }else{
+                        $pass1.removeClass('error').attr('style', '');
+                        $pass2.removeClass('error').attr('style', '');
+                    }
+                }
+            });
+            $pass2.on('keyup',function(){
+                var val2 = $pass2.val();
+                var val1 = $pass1.val();
+                if (val1 !== val2){
+                    $pass1.addClass('error').attr('style', 'border-color: red;');
+                    $pass2.addClass('error').attr('style', 'border-color: red;');
+                }else{
+                    $pass1.removeClass('error').attr('style', '');
+                    $pass2.removeClass('error').attr('style', '');
+                }
+            });
+
+            $('#user-form').on('submit',function(e){
+                var $pass1 = $('[data-role="password-match"]'),
+                    $pass2 = $($pass1.attr('data-pass2'));
+                    var val1 = $pass1.val(),
+                        val2 = $pass2.val();
+                    if ( val1 !== val2 || val1 === ''){
+                        console.log('stop!');
+                        $pass1.addClass('error').attr('style', 'border-color: red;');
+                        $pass2.addClass('error').attr('style', 'border-color: red;');
+                        e.stopPropagation();
+                        e.preventDefault();
+                        return false;
+                    }
+                    var memberChecked = $('input[name="member"][type="checkbox"]').prop('checked'),
+                        adminChecked = $('input[name="admin"][type="checkbox"]').prop('checked');
+                        if (!memberChecked && !adminChecked){
+                            $('#admin-member').show();
+                            return false;
+                        }
+
+            });
+    })(jQuery)
+
+</script>
+{% endblock %}

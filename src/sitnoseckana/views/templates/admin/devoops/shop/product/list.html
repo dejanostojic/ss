@@ -1,0 +1,61 @@
+{% extends "admin/devoops/layout.html" %}
+
+{% block sidebar %}
+<h2>Filter</h2>
+<form id="filter">
+    <div class="form-group">
+        <div class="col-sm-12">
+            <input name="name" type="text" class="form-control" placeholder="{% fmt shop_product_name_filter_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt page_name_filter_tooltip %}" value="{{product.name}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <select name="product_type_id" id="s2_product_type" multiple="multiple" style="width:100%"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary btn-label-left">
+                <span><i class="fa fa-filter"></i></span>
+                {% fmt shop_product_filter %}
+            </button>
+        </div>
+    </div>
+</form>
+{%  endblock %}
+
+{% block content %}
+{% include "admin/devoops/shop/product/list-ajax.html" with fullPageLoad="true" %}
+{% endblock %}
+
+{% block custom-scripts %}
+<script type="text/javascript">
+    var productTypes = {{product-types-json|default:"[]"|safe}},
+        formattedTypes = [];
+    for (var i=0; i < productTypes.length; i++){
+        formattedTypes[i] = {id: productTypes[i].id, text: productTypes[i].name};
+    }
+    $('#s2_product_type').select2({minimumResultsForSearch: 10, data: formattedTypes, placeholder: {id: -1, text: 'Filter by product type'}, allowClear: true});
+
+    $('#s2_product_type').val(-1).trigger("change");
+
+    $('#filter').on('submit',function(e){
+        e.preventDefault();
+        var data = $(this).serialize();
+        $.ajax({
+            mimeType: 'text/html; charset=utf-8', // ! Need set mimeType only when run from local file
+            url: '/admin/shop/product-ajax',
+            data: data,
+            type: 'GET',
+            success: function(data) {
+                $("#ajax-content").html(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            },
+            dataType: "html",
+            async: false
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "admin/devoops/layout.html" %}
+
+{% block sidebar %}{%  endblock %}
+{% block sidebar-show %}sidebar-show{% endblock %}
+
+{% block content %}
+<div>
+    <h2>Lista varijacije tipova</h2>
+    <table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+        <thead>
+        <tr>
+            <th>type</th>
+            <th>variation</th>
+            <th>price</th>
+            <th>akcije</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for type-var in type-variation-list %}
+        <tr>
+            <th>{{type-var.shop_product_type.name}}</th>
+            <th>{{type-var.shop_variation.name}}</th>
+            <th>{{type-var.price}}</th>
+            <th><a href="/admin/shop/productTypeVariation/{{type-var.type_id}}/{{type-var.variation_id}}">edit</a></th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

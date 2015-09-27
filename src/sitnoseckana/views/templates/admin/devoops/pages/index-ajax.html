@@ -1,0 +1,269 @@
+
+<div class="row">
+	<div id="breadcrumb" class="col-xs-12">
+		<a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
+		</a>
+		<ol class="breadcrumb pull-left">
+			<li><a href="/admin/pages/{{page.language_code}}">Pages</a></li>
+			<li><a href="/admin/pages/{{page.language_code}}">{{page.language_code}}</a></li>
+			<li><a href="/admin/page/{{page.id}}/{{page.name}}">{{page.title}}</a></li>
+		</ol>
+		<div id="social" class="pull-right">
+		
+		<a href="#" data-href="/admin/page/{{page.id}}/{{page.name}}">
+			<i class="fa fa-2x fa-trash-o pull-right prog-admin-pages-delete" data-action="/admin/page/{{page.id}}/{{page.name}}" style="z-index: 1; color: #ff0000;"></i>
+		</a>
+	<!--			<a href="#" class="" style="width: 30px; display: inline;">
+				<i class="fa fa-2x fa-plus-square pull-right prog-admin-pages-add" data-action="/admin/page/{{page.id}}/{{page.name}}" style="z-index: 1; color: #04B404;"></i>
+			</a>
+		<a href="#" class="" style="width: 30px; display: inline;">
+				<i class="fa fa-2x fa-trash-o pull-right prog-admin-pages-delete" data-action="/admin/page/{{page.id}}/{{page.name}}" style="z-index: 1; color: #ff0000;"></i>
+			</a> -->
+		</div>
+	</div>
+</div>
+
+<div>
+	<div><a href="#" class="pull-right prog-admin-pages-delete" data-delete-url="/admin/page/{{page.id}}/{{page.name}}" data-page-id="{{page.id}}"><span>Delete</span></a>
+		<h1><a href="/{{page.name}}.html" target="_blank">{{page.title}}</a></h1> </div>
+	<!--  <p>{{page}}</p>-->
+	<div class="col-xs-12 col-sm-12">
+				<div id="tabs">
+					<ul>
+						<li><a href="#tabs-content">{% fmt page_tab_content %}</a></li>
+						<li><a href="#tabs-settings">{% fmt page_tab_settings %}</a></li>
+					</ul>
+					<div id="tabs-content">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12">
+								<div class="box">
+									<div class="box-header">
+										<div class="box-name">
+											<i class="fa fa-search"></i>
+											<span>{% fmt page_tab_content %}</span>
+										</div>
+										<div class="box-icons">
+											<a class="collapse-link">
+												<i class="fa fa-chevron-up"></i>
+											</a>
+											<a class="expand-link">
+												<i class="fa fa-expand"></i>
+											</a>
+											<a class="close-link">
+												<i class="fa fa-times"></i>
+											</a>
+										</div>
+										<div class="no-move"></div>
+									</div>
+									<div class="box-content">
+										<h4 class="page-header">{% fmt page_tab_content %}</h4>
+										<form id="page-put" class="form-horizontal" action="/admin/pages/{{page.id}}/{{page.name}}" role="form" method="PUT" enctype="multipart/form-data">
+											<input type="hidden" name="parent_page_id" value="{{page.parent_page_id}}">
+											<input type="hidden" name="id" value="{{page.id}}">
+											<input type="hidden" name="language_code" value="{{page.language_code}}">
+											<input type="hidden" name="depth" value="{{page.depth}}">
+											
+											<div class="form-group">
+												<label class="col-sm-1 control-label">{% fmt page_ord %}</label>
+												<div class="col-sm-1">
+													<input type="text" name="ord" value="{{page.ord}}">
+												</div>
+												<label class="col-sm-1 control-label">{% fmt page_title %}</label>
+												<div class="col-sm-4">
+													<input type="text" name="title" class="form-control" placeholder="{% fmt page_title %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt title_tooltip %}" value="{{page.title}}">
+												</div>
+												<label class="col-sm-1 control-label">{% fmt page_name %}</label>
+												<div class="col-sm-4">
+													<input name="name" type="text" class="form-control" placeholder="{% fmt page_name %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt page_name_tooltip %}" value="{{page.name}}">
+												</div>
+											</div>
+											{% comment %}
+											<div class="form-group has-success has-feedback">
+												<label class="col-sm-2 control-label">{% fmt page_thumb_1 %}</label>
+												<div class="col-sm-4">
+													<input name="thumb_id1" type="file" class="form-control" data-toggle="tooltip" data-placement="bottom" title="{% fmt page_thumb_1_tooltip %}">
+												</div>
+												<label class="col-sm-2 control-label">{% fmt page_thumb_2 %}</label>
+												<div class="col-sm-4">
+													<input name="thumb_id2" type="file" class="form-control" data-toggle="tooltip" data-placement="bottom" title="{% fmt page_thumb_2_tooltip %}">
+												</div>
+
+												<label class="col-sm-2 control-label">{% fmt page_thumb_3 %}</label>
+												<div class="col-sm-4">
+													<input name="thumb_id3" type="file" class="form-control" data-toggle="tooltip" data-placement="bottom" title="{% fmt page_thumb_3_tooltip %}">
+												</div>
+												<label class="col-sm-2 control-label">{% fmt page_thumb_4 %}</label>
+												<div class="col-sm-4">
+													<input name="thumb_id4" type="file" class="form-control" data-toggle="tooltip" data-placement="bottom" title="{% fmt page_thumb_4_tooltip %}">
+												</div>
+											</div>
+											{% endcomment %}								
+											<div class="form-group">
+												<label class="col-sm-1 control-label" for="wysiwig_simple">{% fmt page_lead %}</label>
+												<div class="col-sm-10">
+														<textarea name="lead" class="form-control" rows="3" id="wysiwig_simple">{{page.lead}}</textarea>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-1 control-label" for="wysiwig_full">{% fmt page_body %}</label>
+												<div class="col-sm-10">
+														<textarea name="body" class="form-control prog-body-mce" rows="5" id="wysiwig_full">{{page.body}}</textarea>
+												</div>
+											</div>
+											<h4 class="page-header">type: {{page.type}}, template {{page.template}}, kind {{page.kind}}</h4>
+						<div>
+							<!-- 
+							<div class="form-group">
+								<label class="col-sm-1 control-label">{% fmt page_title %}</label>
+								<div class="col-sm-4">
+									<input form="page-put" type="text" name="title" class="form-control" placeholder="{% fmt page_title %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt page_title_tooltip %}" value="{{page.title}}" >
+								</div>
+								<label class="col-sm-1 control-label">{% fmt page_name %}</label>
+								<div class="col-sm-4">
+									<input type="text" name="name" class="form-control" placeholder="{% fmt page_name %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt page_name_tooltip %}" value="{{page.name}}">
+								</div>
+							</div>
+							-->
+							<div class="form-group">
+								<label class="col-sm-1 control-label">{% fmt page_published %}</label>
+								<div class="col-sm-2">
+                                   <div class="toggle-switch toggle-switch-success">
+                                       <label>
+                                           <input type="hidden" name="published" value="false">
+                                           <input name="published" type="checkbox" value="true" {% if page.published %} checked {% endif %}>
+                                           <div class="toggle-switch-inner"></div>
+                                           <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                       </label>
+                                   </div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-1 control-label">{% fmt page_primary_navigation %}</label>
+								<div class="col-sm-2">
+                                    <div class="toggle-switch toggle-switch-success">
+                                        <label>
+                                            <input type="hidden" name="primary_navigation" value="false">
+                                            <input name="primary_navigation" type="checkbox" value="true" {% if page.primary_navigation %} checked {% endif %}>
+                                            <div class="toggle-switch-inner"></div>
+                                            <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">{% fmt page_type %}
+                                    </label>
+                                    <div class="col-sm-11">
+                                    <select form="page-put" name="type" id="s2_type" style="width:100%"></select>
+                                        <!-- {% comment %}
+
+                                            <select form="page-put" class="populate placeholder" name="type" id="s2_type" style="width:100%">
+                                                <option value="">-- Select type --</option>
+                                                {% for p-name in plugin-names %}
+                                                <option value="{{p-name.val}}" {% ifequal p-name.val page.type %}selected="selected"{% endifequal %}>{{p-name.label}}</option>
+                                                {% endfor %}
+                                            </select>
+
+                                        {% endcomment %} -->
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label">{% fmt page_template %}</label>
+									<div class="col-sm-11">
+										<select form="page-put" name="template" id="s2_template" style="width:100%"></select>
+                                        <!-- {% comment %}
+                                            <select form="page-put" class="populate placeholder" name="template" id="s2_template" style="width:100%">
+                                                <option value="">-- Select template --</option>
+                                                {% options template-names page.template %}
+                                            </select>
+                                        {% endcomment %}  -->
+                                    </div>
+                                    </div>
+                            <!-- {% comment %}
+                           <label class="col-sm-1 control-label">{% fmt page_type %}</label>
+                           <div class="col-sm-11">
+                               <select form="page-put" class="populate placeholder" name="page.kind" id="s2_views" style="width:100%">
+                                   <option value="">-- Select kind --</option>
+                                    {% for kind in views %}
+                                   <option value="{{kind.val}}" {% ifequal kind.val page.kind %}selected="selected"{% endifequal %}>{{kind.label}}</option>
+                                   {% endfor %}
+                               </select>
+                           </div>
+                           {% endcomment %}-->
+                           <div class="form-group">
+                               <label class="col-sm-1 control-label">{% fmt page_kind %}</label>
+                               <div class="col-sm-11">
+                               <select form="page-put" name="kind" id="s2_views" style="width:100%"></select>
+                               <!-- {% comment %}
+                                   <select form="page-put" class="populate placeholder" name="kind" id="s2_views" style="width:100%">
+                                       <option value="">-- Select kind --</option>
+                                       {% options views page.kind %}
+                                   </select>
+                               {% endcomment %} -->
+                               </div>
+                           </div>
+
+           <!-- 	</form> --></div>
+											<div class="clearfix"></div>
+											<div class="form-group">
+												<div class="col-sm-offset-2 col-sm-2">
+													<button type="cancel" class="btn btn-default btn-label-left">
+													<span><i class="fa fa-clock-o txt-danger"></i></span>
+														Cancel
+													</button>
+												</div>
+												<div class="col-sm-2">
+													<button type="submit" class="btn btn-primary btn-label-left">
+													<span><i class="fa fa-clock-o"></i></span>
+														Submit
+													</button>
+												</div>
+                                                <div id="submit-form-alert" class="alert alert-success col-sm-2 hidden" role="alert">
+                                                    <strong>Action</strong> complete.
+                                                </div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="tabs-settings">
+						<!-- <form class="form-horizontal" role="form" method="PUT" enctype="multipart/form-data"> -->
+						
+					</div>
+				</div>
+	</div>
+</div>
+<script type="text/javascript">
+{% if fullPageLoad %}
+		console.log('this is full page load!!!!');
+	{% else %}
+	{% comment %} ajax load. Disabled for now. TinyMCE problems! {% endcomment %}
+
+		//$(document).ready(function() {
+			// Create jQuery-UI tabs
+			$("#tabs").tabs();
+
+			// reinit tinymce
+			var mce = $('textarea.prog-body-mce').first();
+			if (mce.tinymce()){
+			   mce.tinymce().remove();
+			}
+			mce.tinymce(mce_editor);
+			
+			DemoSelect2('{{page.type}}','{{page.template}}','{{page.kind}}');
+
+			// Add tooltip to form-controls
+			$('.form-control').tooltip();
+
+			// Load example of form validation
+			LoadBootstrapValidatorScript(DemoFormValidator);
+			// Add drag-n-drop feature to boxes
+			//WinMove();
+	//	});
+	
+{% endif %}
+</script>

@@ -1,0 +1,8 @@
+{% extends "admin/devoops/layout.html" %}
+
+{% block sidebar %}{%  endblock %}
+{% block sidebar-show %}sidebar-show{% endblock %}
+
+{% block content %}
+    {% include "admin/devoops/shop/productType/form-ajax.html" with fullPageLoad="true" %}
+{% endblock %}

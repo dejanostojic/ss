@@ -1,0 +1,26 @@
+{% extends "admin/devoops/layout.html" %}
+
+{% block sidebar-show %}sidebar-show{% endblock %}
+
+{% block sidebar %}
+<h2>Filter</h2>
+{%  endblock %}
+{% block content %}
+<div>
+    <h2>Lista tipova</h2>
+    <table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+        <thead>
+        <tr>
+            <th>name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for type in type-list %}
+        <tr>
+            <th><a href="/admin/shop/productType/{{type.id}}">{{type.name}}</a></th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

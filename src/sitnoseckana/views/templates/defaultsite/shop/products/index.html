@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{page.title}}</title>
+    <meta name="description" content="">
+    <meta name="msapplication-tap-highlight" content="yes" />
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <link href='http://fonts.googleapis.com/css?family=Cabin:400,400italic,500,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <!--		 Place favicon.ico and apple-touch-icon.png in the root directory -->
+    {% include "snippets/favicons.html" %}
+    <link rel="stylesheet" href="/res/frontend/berg/css/custom.css">
+    <link rel="stylesheet" href="/res/frontend/berg/css/fix.css">
+    <script src="/res/frontend/berg/js/jquery-2.1.0.min.js"></script>
+    <script src="/res/frontend/berg/js/modernizr-2.6.2.min.js"></script>
+    <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?sensor=false&#038;ver=3.0'></script>
+</head>
+<body class="intro-fullscreen  yo-anim-enabled">
+<div class="content-wrapper">
+    <!--content-->
+
+
+    <nav id="main-navbar" class="hidden-xs hidden-sm">
+        <div class="nav hidden-xs">
+            <div class="main-reorder pull-right">
+                <a href="#">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+
+            <div class="logo pull-left">
+                <a href="index.html">
+                    <figure>
+                        <img src="/res/frontend/berg/img/logo1.png" class="light-logo" alt="Berg HTML Theme"/>
+                        <img src="/res/frontend/berg/img/logo2.png" class="dark-logo" alt="Berg HTML Theme"/>
+                    </figure>
+                </a>
+            </div>
+            <div class="main-nav">
+                <ul class="pull-right">
+                    <li>
+                        <a href="index.html" class="    ">home</a>
+                        <div class="subnav">
+                            <ul class="subnav-wrapper">
+                                <li>
+                                    <a href="index.html" class="">parallax</a>
+                                </li>
+                                <li>
+                                    <a href="index2.html" class="">fullscreen slider</a>
+                                </li>
+                                <li>
+                                    <a href="index3.html" class="">video background</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html" class="">static background</a>
+                                </li>
+                                <li>
+                                    <a href="index5.html" class="">classic</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="blog.html" class="">blog</a>
+                        <div class="subnav">
+                            <ul class="subnav-wrapper">
+                                <li>
+                                    <a href="blog.html" class="">blog</a>
+                                </li>
+                                <li>
+                                    <a href="post.html" class="">post 1</a>
+                                </li>
+                                <li>
+                                    <a href="post2.html" class="">post 2</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="restaurant.html" class="">restaurant</a>
+                    </li>
+                    <li>
+                        <a href="menu.html" class="hover-subnav ">menu</a>
+                        <div class="subnav image-subnav">
+                            <ul class="subnav-wrapper">
+                                <li>
+                                    <a href="menu.html#starters">sokovi</a>
+                                    <div>
+                                        <a href="menu.html#starters" class="menu-img" style="background-image: url('http://placehold.it/500x500')"></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="menu.html#salads">Smutiji</a>
+                                    <div>
+                                        <a href="menu.html#salads" class="menu-img" style="background-image: url('http://placehold.it/500x500')"></a>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <a href="menu.html#soups">soups</a>
+                                    <div>
+                                        <a href="menu.html#soups" class="menu-img" style="background-image: url('http://placehold.it/500x500')"></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="menu.html#mains">mains</a>
+                                    <div>
+                                        <a href="menu.html#mains" class="menu-img" style="background-image: url('http://placehold.it/500x500')"></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="menu.html#desserts">desserts</a>
+                                    <div>
+                                        <a href="menu.html#desserts" class="menu-img" style="background-image: url('http://placehold.it/500x500')"></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="menu.html#drinks">drinks</a>
+                                    <div>
+                                        <a href="menu.html#drinks" class="menu-img" style="background-image: url('http://placehold.it/500x500')"></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="reservation.html" class="">reservation</a>
+                    </li>
+                    <li>
+                        <a href="contact.html" class="">contact</a>
+                    </li>
+                    <li>
+                        <a href="shop.html" class="">shop</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover-subnav">pages</a>
+                        <div class="subnav">
+                            <ul class="subnav-wrapper ">
+                                <li>
+                                    <a href="menu2.html" class="">grid menu</a>
+                                </li>
+                                <li>
+                                    <a href="menu3.html" class="active">list menu</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html" class="">typography</a>
+                                </li>
+                                <li>
+                                    <a href="gallery.html" class="">gallery</a>
+                                </li>
+                                <li>
+                                    <a href="fullscreen-intro.html">fullscreen intro</a>
+                                </li>
+                                <li>
+                                    <a href="top-intro.html">top header</a>
+                                </li>
+                                <li>
+                                    <a href="without-intro.html">no header</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-nav" class="visible-xs visible-sm">
+        <header>
+            <div class="container-fluid">
+                <ul class="menu-header">
+                    <li class="pull-left">
+                        <a href="index.html" class="logo">
+                            <figure>
+                                <img src="/res/frontend/berg/img/logo2.png" alt="Berg HTML Theme"/>
+                            </figure>
+                        </a>
+                    </li>
+                    <li class="reorder pull-right"><a href="#" title=""><i class="fa fa-bars"></i></a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="" id="flyout-container">
+            <ul id="mobile-navbar" class="nav flyout-menu main-nav nav-height">
+                <li class="nav-item">
+                    <a title="" href="index.html">home</a>
+                </li>
+                <li class="nav-item">
+                    <a title="" href="blog.html">blog</a>
+                    <span class="open-children"><i class="fa fa-angle-down"></i></span>
+                    <ul class="subnav">
+                        <li>
+                            <a href="blog.html"><span>blog</span></a>
+                        </li>
+                        <li><a href="post.html" title=""><span>post 1</span></a></li>
+                        <li><a href="post2.html" title=""><span>post 2</span></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a title="" href="restaurant.html">Restaurant</a>
+                </li>
+                <li class="nav-item">
+                    <a title="" href="menu.html" class="">Menu</a>
+                    <span class="open-children"><i class="fa fa-angle-down"></i></span>
+                    <ul class="subnav">
+                        <li><a href="menu.html" title=""><span>Menu 1</span></a></li>
+                        <li><a href="menu2.html" title=""><span>Menu 2</span></a></li>
+                        <li><a href="menu3.html" title=""><span>Menu 3</span></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a title="" href="reservation.html">Reservation</a>
+                </li>
+                <li class="nav-item">
+                    <a title="" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a title="" href="shop.html">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a title="" href="gallery.html">Gallery</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="section-intro"  data-opacity-start="30" data-opacity-end="100" data-background="/res/frontend/berg/img/str2.jpg">
+        <div class="pre-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="parallax-element-first">Sitnoseckana meni</h1>
+                        <p class="parallax-element-second">Vaša doza sirove energije</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="arrow1 arrow-section hidden-xs" href="#">
+            <i class="fa fa-angle-down"></i>
+        </a>
+        <a class="arrow2 arrow-section hidden-xs" href="#" style="">
+            <i class="fa fa-angle-up"></i>
+        </a>
+    </div>
+    <div class="section-space"></div>
+    <section id="third-menu" class="section-scroll main-section menu">
+        <ul class="list-category shop">
+            <li>
+                <span class="filter" data-filter=".menu-meals">Prikaži sve</span>
+            </li>
+            <li>
+                <span class="filter" data-filter=".category-1">obroci</span>
+            </li>
+            <li>
+                <span class="filter" data-filter=".category-2">sokovi</span>
+            </li>
+            <li>
+                <span class="filter" data-filter=".category-3">Smutiji</span>
+            </li>
+            <li class="shop-list">
+                <ul>
+                    <li class="shopping">
+                        <a href="#category-checkout">Kupi</a>
+                    </li>
+                    <li class="shopping-cart">
+                        <span class="filter cart" data-filter=".category-cart">Cart</span>
+                        <ul class="show-cart" data-role="cart-menu-list">
+                           <!-- <li class="product">
+                                <a href="product.html" class="img-product">
+                                    <figure><img src="http://placehold.it/100x100" alt=""/></figure>
+                                </a>
+                                <div class="list-product">
+                                    <a href="product.html"><h5>Burbon Chicken</h5></a>
+                                    <div class="quantity">1</div>
+                                    <div class="price-product">$22.90</div>
+                                    <div class="remove-product"><i class="icon-close"></i></div>
+                                </div>
+                            </li>
+                            <li class="product">
+                                <a href="product.html" class="img-product">
+                                    <figure><img src="http://placehold.it/100x100" alt=""/></figure>
+                                </a>
+                                <div class="list-product">
+                                    <h5>Crock Pot Chicken</h5>
+                                    <div class="quantity">1</div>
+                                    <div class="price-product">$16.50</div>
+                                    <div class="remove-product"><i class="icon-close"></i></div>
+                                </div>
+                            </li>
+                            <li class="product">
+                                <a href="product.html" class="img-product">
+                                    <figure><img src="http://placehold.it/100x100" alt=""/></figure>
+                                </a>
+                                <div class="list-product">
+                                    <h5>Hamburger with fries</h5>
+                                    <div class="quantity">3</div>
+                                    <div class="price-product">$15.90</div>
+                                    <div class="remove-product"><i class="icon-close"></i></div>
+                                </div>
+                            </li>
+                            <li class="summation">
+                                <div class="summation-subtotal">
+                                    <span>subtotal:</span>
+                                    <span class="amount">$87.10</span>
+                                </div>
+                                <div class="btn-cart">
+                                    <button class="btn btn-default" data-filter=".category-cart"><a href="#category-cart">view cart</a></button>
+                                    <button class="btn btn-dark"><a href="cart.html">checkout</a></button>
+                                </div>
+                            </li>
+-->
+                        </ul>
+                    </li>
+                    <li class="shopping">
+                        {% if request.session.user-data.username %}
+                        <a href="/{{page-attrs.order-item-link}}" data-role="loged-in-popover-link">{{request.session.user-data.user.first_name}} {{request.session.user-data.user.last_name}}</a>
+                        {% else %}
+                        <a href="#" data-role="login-popover-link">Login</a>
+                        {% endif%}
+
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="container-fluid menu-content mixitup">
+            <div class="mix category-cart" data-myorder="1">
+                <div class="row">
+                    <div class="col-xs-12 menu-category">
+                        <h2>cart</h2>
+                    </div>
+                </div>
+                <div class="row" id="cart">
+                    <div class="cart-products">
+                        <div class="container">
+                            <div class="row cart-header">
+                                <div class="col-xs-4 col-sm-5">
+                                    <h5 class="product-name">Product name</h5>
+                                </div>
+                                <div class="col-xs-2">
+                                    <h5 class="product-price">Unit price</h5>
+                                </div>
+                                <div class="col-xs-2">
+                                    <h5 class="product-quantity">Qty</h5>
+                                </div>
+                                <div class="col-xs-2">
+                                    <h5 class="product-subtotal">Subtotal</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container" data-role="view-cart-container">
+                        <div class="row cart-item">
+                            <div class="col-xs-4 col-sm-5 product-name">
+                                <a href="product.html" class="product-thumbnail"><img src="http://placehold.it/100x100" class="" alt=""></a>
+                                <a href="product.html" class="name">Hamburger with fries</a>
+                                <span>Size: L</span>
+                                <span>Color: Black</span>
+                            </div>
+                            <div class="col-xs-2 product-position product-price">
+                                <span class="amount">$15.90</span>
+                            </div>
+                            <div class="col-xs-2 product-position product-quantity">
+                                <div class="quantity">
+                                    <input type="text" step="1" name="" value="3" title="Qty" class="input-text qty text" size="4">
+                                    <input type="button" value="+" class="plus hidden-xs">
+                                    <input type="button" value="-" class="minus hidden-xs">
+                                </div>
+                            </div>
+                            <div class="col-xs-2 product-position product-subtotal">
+                                <span class="amount">$47.70</span>
+                            </div>
+                            <div class="col-xs-1 product-position product-remove">
+                                <a href="#" class="remove" data-djax-exclude="true" title="Remove this item"><i class="icon-close"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="row cart-subtotal">
+                            <div class="col-xs-2 col-xs-offset-6 col-sm-offset-7 subtotal-txt">
+                                <span>Total:</span>
+                            </div>
+                            <div class="col-xs-2 subtotal">
+                                <span class="amount">$87.10</span>
+                            </div>
+                        </div>
+                        <div class="row cart-buttons">
+                            <div class="col-xs-12">
+                                <a href="#menu-meals" class="btn btn-dark  continue-shopping">Continue shopping</a>
+                                <div class="product-btn">
+                                    <a href="#" class="btn btn-default ">clear shopping cart</a>
+                                    <a href="#" class="btn btn-default  ">Update basket</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row cart-buttons">
+                            <div class="col-xs-12">
+                                <div class="coupon-code">
+                                    <input type="text" placeholder="Coupon code" class="form-control">
+                                    <a href="#" class="btn btn-default ">Apply coupon</a>
+                                </div>
+                                <div class="product-btn">
+                                    <a href="#" class="btn btn-color  ">Proceed to checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div id="reservation" class="mix category-checkout" data-myorder="2">
+                <div class="row">
+                    <div class="col-xs-12 menu-category">
+                        <h2>Kupi</h2>
+                    </div>
+                </div>
+                 <div class="reservation-content container">
+                     <div class="row">
+                         <div class="col-sm-4 pull-right">
+                             <h4>Promo</h4>
+                             <p>TO DO! Prikazati ovde neko promo jelo. Pametna preporuka u zavisnosti šta ima u korpi ili šta je ranije naručivao. </p>
+                         </div>
+                         <div class="col-xs-12 col-sm-8 ">
+                             <div class="reservation-form row">
+                                 <form role="form" name="date-reservation-form" data-role="order-form" action="/dost/shop/order" method="POST" class="simform" autocomplete="off">
+                                     <input type="hidden" name="__anti-forgery-token" value="{% csrf-token %}">
+                                     <div class="form-group col-md-12">
+                                     <div class="col-md-8">
+                                         <h4>Naručite</h4>
+                                     </div>
+                                     <div class="col-md-4">
+                                         <h5 class="pull-right"><a href="#" data-role="loged-in-user-fill-form">Postojeći korisnik?</a></h5>
+                                     </div>
+                                     </div>
+                                     <div class="col-md-4">
+                                         <div class="form-group">
+                                             <input type="text" class="form-control" placeholder="Ime" name="first_name">
+                                         </div>
+                                     </div>
+
+                                     <div class="col-md-4">
+                                         <div class="form-group">
+                                             <input type="text" class="form-control" id="reservation-last-name" placeholder="Prezime" name="last_name">
+                                         </div>
+                                     </div>
+
+                                     <div class="col-md-4">
+                                         <div class="form-group">
+                                             <input type="email" class="form-control" id="reservation-email" placeholder="Email" name="email">
+                                         </div>
+                                     </div>
+
+                                     <div class="col-md-4">
+                                         <div class="form-group mobile-input">
+                                             <input type="tel" class="form-control" id="reservation-phone" placeholder="Telefon" name="phone">
+                                         </div>
+                                     </div>
+
+                                     <div class="col-md-8">
+                                         <div class="form-group mobile-input">
+                                             <input type="text" class="form-control" id="reservation-address" placeholder="Adresa" name="shipping_address">
+                                         </div>
+                                     </div>
+                                     <div class="col-md-12">
+                                         <div class="form-group message">
+                                             <textarea class="form-control input-row-2" id="reservation-message" placeholder="Dodatne napomene" name="extra_info"></textarea>
+                                         </div>
+                                     </div>
+                                     <div class="col-md-12">
+                                         <div class="form-group confirm-btn text-right button-submit">
+                                             <button type="submit" class="btn btn-dark button-send">Pošalji porudzbinu</button>
+                                             <div class="message-success alert-success alert hidden"><i class="fa fa-check"></i></div>
+                                         </div>
+                                     </div>
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+
+            <div class="mix menu-meals category-1" data-myorder="1">
+                <div class="row">
+                    <div class="col-xs-12 menu-category">
+                        <h2>Obroci</h2>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row items-content">
+                        {% for menu in page-attrs.menu-items %}
+                            <div class="menu-item" data-role="menu-item">
+                                <div class="item-description" data-role="item-description">
+                                    <span class="">{{menu.shop_product.shop_product_type.name}}</span>
+                                    <span class="pull-right">{% format-date menu.date EEEE %}</span>
+                                    <br/>
+
+                                    <h5>{{menu.shop_product.name}}</h5>
+                                    <p>{{menu.shop_product.ingredients}}</p>
+                                    <div class="menu-details">
+                                        {% for variation in menu.shop_product.shop_product_type.variations %}
+                                        <span class="new-price item-price">{{variation.price}}</span>{% if forloop.first %}/{% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">naruči</a></div>
+                                </div>
+                                <div class="item-action hide" data-role="item-action">
+                                    <div class="menu-details">
+                                        {% for variation in menu.shop_product.shop_product_type.variations %}
+                                        <div class="shop-button" data-role="add-to-cart">
+                                            <label>Količina: </label><input type="number" min="0" value="1" style="width: 40px;" />
+                                            <a href="#" class="btn btn-color btn-sm" data-role="shop-product-variation-button" data-product-id="{{menu.shop_product.id}}" data-formatted-date="{% format-date menu.date yyyy-MM-dd %}" data-type-id="{{variation.type_id}}" data-variation-id="{{variation.variation_id}}">{{variation.price}} {{variation.shop_variation.name}}</a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="mix menu-meals category-2 drinks-section" data-myorder="2">
+                <div class="row">
+                    <div class="col-xs-12 menu-category">
+                        <h2>Sokovi</h2>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row items-content">
+                        {% for juice in juices %}
+                        <div class="menu-item" data-role="menu-item">
+                            <div class="item-description">
+                                <h5><span>{{juice.name}}</span><span class="new-price pull-right item-price">{{juice.price}}</span></h5>
+                                <p>{{juice.ingredients}}</p>
+                                <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">naruči</a></div>
+                                <div class="item-action menu-details hide" data-role="item-action">
+                                    <div class="shop-button" data-role="add-to-cart">
+                                        <select class="form-control" data-role="date-select">
+                                            {% options days-till-friday current-date %}
+                                        </select>
+                                        <label>Količina: </label><input type="number" min="0" value="1" style="width: 40px;" />
+                                        <a href="#" class="btn btn-color btn-sm" data-role="shop-product-variation-button" data-product-id="{{juice.id}}" data-type-id="{{juice.product_type_id}}" data-variation-id="0">Dodaj u korpu</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mix menu-meals category-3 drinks-section" data-myorder="3">
+                <div class="row">
+                    <div class="col-xs-12 menu-category">
+                        <h2>Smutiji</h2>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row items-content">
+                        {% for shake in shakes %}
+                        <div class="menu-item" data-role="menu-item">
+                            <div class="item-description">
+                                <h5><span>{{shake.name}}</span><span class="new-price pull-right item-price">{{shake.price}}</span></h5>
+                                <p>{{shake.ingredients}}</p>
+                                <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">naruči</a></div>
+                                <div class="item-action menu-details hide" data-role="item-action">
+                                    <div class="shop-button" data-role="add-to-cart">
+                                        <select class="form-control" data-role="date-select">
+                                            {% options days-till-friday current-date %}
+                                        </select>
+                                        <label>Količina: </label><input type="number" min="0" value="1" style="width: 40px;" />
+                                        <a href="#" class="btn btn-color btn-sm" data-role="shop-product-variation-button" data-product-id="{{shake.id}}" data-type-id="{{shake.product_type_id}}" data-variation-id="0">Dodaj u korpu</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <div id="footer-spacer"></div>
+    <footer id="footer" class="text-center">
+
+        <a href="#" class="to-the-top">
+            <i class="fa fa-arrow-circle-o-up"></i>
+        </a>
+
+        <h2>Berg restaurant</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center v-card">
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="open-daily">
+                            <span class="day">Monday - Thursday</span>
+                            <span class="hours">7.00 - 21.00</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="open-daily">
+                            <span class="day">Friday - Sunday</span>
+                            <span class="hours">7.00 - 23.00</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="simple-contact">
+                            <span class="address">Armii Krajowej 17</span>
+                            <span class="postal-code">58-100 Świdnica</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="simple-contact">
+                            <span class="mobile"><a href="#">+48 889 889 889</a></span>
+                            <span class="email"><a href="#">restaurant@berg.com</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="social-icon clearfix">
+            <li>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-pinterest"></i></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-google-plus"></i></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+            </li>
+        </ul>
+
+
+        <p class="copyrights">© 2014 <a href="index">Berg</a>. All Rights Reserved. </p>
+    </footer>
+    <div class="gallery-wrapper"></div>
+
+    <div id="preloader">
+        <div id="status">
+            <div class="loading-wrapper">
+                <img src="/res/frontend/berg/img/logo2.png" alt="Loading"/>
+            </div>
+        </div>
+        <div id="status-loaded"></div>
+    </div>
+</div>
+<script src="/res/frontend/berg/js/browser.js"></script>
+<script src="/res/frontend/berg/js/jquery.ba-throttle-debounce.min.js"></script>
+<script src="/res/frontend/berg/js/jquery.smooth-scroll.js"></script>
+<script src="/res/frontend/berg/js/matchmedia.js"></script>
+<script src="/res/frontend/berg/js/enquire.min.js"></script>
+<script src="/res/frontend/berg/js/jquery.velocity.min.js"></script>
+<script src="/res/frontend/berg/js/waypoints.js"></script>
+<script src="/res/frontend/berg/js/owl.carousel.js"></script>
+<script src="/res/frontend/berg/js/jquery.backstretch.js"></script>
+<script src="/res/frontend/berg/js/jquery.mb.YTPlayer.js"></script>
+<script src="/res/frontend/berg/js/jquery.parallaxify.js"></script>
+<script src="/res/frontend/berg/js/jquery.imagesloaded.js"></script>
+<script src="/res/frontend/berg/js/jquery.unveil.min.js"></script>
+<script src="/res/frontend/berg/js/jquery.superslides.min.js"></script>
+<script src="/res/frontend/berg/js/jquery.fullPage.min.js"></script>
+<script src="/res/frontend/berg/js/jquery.mixitup.js"></script>
+<script src="/res/frontend/berg/js/jquery.webui-popover.min.js"></script>
+<script src="/res/frontend/berg/js/main.js"></script>
+<script src="/res/frontend/berg/js/dost.main.js"></script>
+<!--
+<ul class="show-cart" data-role="cart-menu-list">
+    <li class="product">
+        <a href="product.html" class="img-product">
+            <figure><img src="http://placehold.it/100x100" alt=""/></figure>
+        </a>
+        <div class="list-product">
+            <a href="product.html"><h5>Burbon Chicken</h5></a>
+            <div class="quantity">1</div>
+            <div class="price-product">$22.90</div>
+            <div class="remove-product"><i class="icon-close"></i></div>
+        </div>
+    </li>
+    <li class="summation">
+        <div class="summation-subtotal">
+            <span>subtotal:</span>
+            <span class="amount">$87.10</span>
+        </div>
+        <div class="btn-cart">
+            <button class="btn btn-default" data-filter=".category-cart"><a href="#category-cart">view cart</a></button>
+            <button class="btn btn-dark"><a href="cart.html">checkout</a></button>
+        </div>
+    </li>
+
+</ul>
+-->
+<script>
+
+antiForgeryTocken = '{% csrf-token %}';
+addAntiForgery('{% csrf-token %}')
+console.log('forg: ' + antiForgeryTocken);
+
+basketModule.init({{request.session.cart.products|json|safe}} || {}, 'ul[data-role="cart-menu-list"]', '[data-role="view-cart-container"]');
+basketModule.print();
+setLoggedInUserData({{request.session.user-data.user|json|safe}});
+
+</script>
+</body>
+</html>

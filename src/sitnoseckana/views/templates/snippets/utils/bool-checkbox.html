@@ -1,0 +1,11 @@
+<h2>checked "{{checked}}" - {% if {{checked}} %} checked {% else %}not checked{% endif %}</h2>
+<h2>name {{name}}</h2>
+
+<div class="toggle-switch toggle-switch-success">
+    <label>
+        <input type="hidden" name="{{name}}" value="false">
+        <input name="{{name}}" type="checkbox" value="true" {% if {{checked}} %} checked {% endif %}>
+        <div class="toggle-switch-inner"></div>
+        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+    </label>
+</div>

@@ -1,0 +1,44 @@
+()
+(ns 'sitnoseckana.models.base-daf)
+(ns sitnoseckana.models.base-daf)
+(ns user)
+(doc loop)
+(ns sitnoseckana.models.base-daf)
+(doc doc)
+(ns user)
+(doc doc)
+(doc loop)
+(loop [x [1 2 3] c 0] (if (empty? x) nil (do (println cur " " (first x)) (recur (rest x) (inc c)))))
+(loop [x [1 2 3] c 0] (if (empty? x) nil (do (println c " " (first x)) (recur (rest x) (inc c)))))
+(use 'sitnoseckana.views.tmpl-resolver)
+(loop [names []
+         cur-page (load-root pages "sr")]
+    (if (empty? names)
+      cur-page)
+    (recur (rest names) (find-page pages cur-page names)))
+*e
+(println (.printStackTrace *e))
+(empty? nil)
+(loop [p page])
+(loop [p page]
+(if (empty? page)
+  "kraj"
+  (do
+    (println (get p "parentitem_id")))
+(use sitnoseckana.views.tmpl-resolver)
+(use 'sitnoseckana.views.tmpl-resolver)
+(resolve-page ["asdf" "b"] "sr")
+*e
+(println *e)
+(println (.printStackTrase e))
+(println (.printStackTrase *e))
+(resolve-page ["asdf" "b"] "sr")
+(println (.printStackTrase *e))
+pages
+(load-root pages "sr")
+lein ring server
+(use 'sitnoseckana.repl)
+(start-server)
+(use 'sitnoseckana.repl)
+(start-server)
+(use 'sitnoseckana.repl)

@@ -1,0 +1,133 @@
+{% extends "admin/devoops/layout.html" %}
+
+
+{% block sidebar %}{%  endblock %}
+{% block sidebar-show %}sidebar-show{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+
+        </ol>
+        <div id="social" class="pull-right">
+            <a href="/admin/shop/order" class="btn btn-primary btn">List</a>
+        </div>
+    </div>
+</div>
+<h2>{% if order %}Order: #{{order.id}}{% else %}New order{% endif %}</h2>
+<div class="col-xs-12 col-sm-12">
+    <form id="product-type-put" class="form-horizontal" action="/admin/shop/order{% if order %}/{{order.id}}{% endif %}" role="form" method="{% if order %}PUT{% else %}POST{% endif %}" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{order.id|default:0}}">
+        <input type="hidden" name="user_id" value="{{order.user_id|default:0}}">
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt shop_order_first_name %}</label>
+            <div class="col-sm-4">
+                <input name="name" type="text" class="form-control" placeholder="{% fmt shop_order_first_name_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt shop_order_first_name_tooltip %}" value="{{order.first_name}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt shop_order_last_name %}</label>
+            <div class="col-sm-4">
+                <input name="name" type="text" class="form-control" placeholder="{% fmt shop_order_last_name_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt shop_order_last_name_tooltip %}" value="{{order.last_name}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt shop_order_email %}</label>
+            <div class="col-sm-4">
+                <input name="name" type="text" class="form-control" placeholder="{% fmt shop_order_email_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt shop_order_email_tooltip %}" value="{{order.email}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt shop_order_phone %}</label>
+            <div class="col-sm-4">
+                <input name="name" type="text" class="form-control" placeholder="{% fmt shop_order_phone_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt shop_order_phone_tooltip %}" value="{{order.phone}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt shop_order_shipping_address %}</label>
+            <div class="col-sm-4">
+                <input name="name" type="text" class="form-control" placeholder="{% fmt shop_order_shipping_address_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt shop_order_shipping_address_tooltip %}" value="{{order.shipping_address}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt shop_order_extra_info %}</label>
+            <div class="col-sm-4">
+                <input name="name" type="text" class="form-control" placeholder="{% fmt shop_order_extra_info_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt shop_order_extra_info_tooltip %}" value="{{order.extra_info}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">{% fmt shop_order_total_price %}</label>
+            <div class="col-sm-4">
+                <input name="name" type="text" class="form-control" placeholder="{% fmt shop_order_total_price_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt shop_order_total_price_tooltip %}" value="{{order.total_price}}">
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            <div class="col-sm-2">
+                <a href="/admin/shop/product" class="btn btn-primary btn">List</a>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-label-left">
+                    <span><i class="fa fa-clock-o"></i></span>
+                    Submit
+                </button>
+            </div>
+            <div class="col-sm-4">
+                <div id="submit-form-alert" class="alert alert-success col-sm-2 hidden" role="alert">
+                    <strong>Action</strong> complete.
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div>
+        <h2>Order items</h2>
+        <table id="list" class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+            <thead>
+            <tr>
+                <th>product</th>
+                <th>variation</th>
+                <th>price</th>
+                <th>quantity</th>
+                <th>discount</th>
+                <th>total price</th>
+                <th>date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order-item in order-item-list %}
+            <tr>
+                <th>{{order-item.shop_product.name}}</th>
+                <th>{{order-item.shop_variation.name}}</th>
+                <th>{{order-item.price}} RSD</th>
+                <th>{{order-item.quantity}}</th>
+                <th>{{order-item.discount}}</th>
+                <th>{{order-item.total}}</th>
+                <th>{% format-date order-item.date dd-MM-yyyy,EEEE en %}</th>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th colspan="5">Ukupno</th>
+                <th>{{order.total_price}}</th>
+                <th></th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+{% block custom-scripts %}
+<script type="text/javascript">
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "admin/devoops/layout.html" %}
+
+
+{% block sidebar %}{%  endblock %}
+{% block sidebar-show %}sidebar-show{% endblock %}
+
+{% block content %}
+{% include "admin/devoops/shop/product/form-ajax.html" with fullPageLoad="true" %}
+{% endblock %}
+
+
+
+{% block custom-scripts %}
+<script type="text/javascript">
+
+    var productTypes = {{product-types-json|safe}},
+        formattedTypes = [];
+    for (var i=0; i < productTypes.length; i++){
+        formattedTypes[i] = {id: productTypes[i].id, text: productTypes[i].name};
+    }
+    $('#s2_product_type').select2({minimumResultsForSearch: 10, data: formattedTypes, placeholder: {id: '', text: 'Select product type'}, allowClear: true});
+    $('#s2_product_type').val({{product.product_type_id}}).trigger('change');
+</script>
+{% endblock %}

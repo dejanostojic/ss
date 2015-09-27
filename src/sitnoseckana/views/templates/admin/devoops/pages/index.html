@@ -1,0 +1,225 @@
+{% extends "admin/devoops/layout.html" %}
+
+{% block sidebar %}
+<ul class="nav main-menu">
+	<li>
+        <a href="/admin/pages/{{pages.root-page.id}}/{{pages.root-page.name}}" data-ajax-url="/admin/page-ajax/{{pages.root-page.id}}/{{pages.root-page.name}}" data-title="Sitnosecnana - Pages - {{pages.root-page.title}}" data-target="#ajax-content" class="ajax-link">
+            <span class="hidden-xs">{{pages.root-page.title}}</span>
+			<span>
+				<i class="fa fa-2x fa-plus-square pull-right prog-admin-pages-add" data-depth="{{pages.root-page.depth}}" data-id="{{pages.root-page.id}}" data-ajax-url="/admin/page-ajax-new/{{pages.root-page.id}}/{{pages.root-page.name}}" data-title="Sitnosecnana - Pages - {{pages.root-page.title}}" data-target="#ajax-content"></i>
+			</span>
+        </a>
+	</li>
+    <!--{% comment %}
+			href: 'href',
+			ajaxUrl: 'data-ajax-url',
+			title: 'data-page-title',
+			targetElem: 'data-target',
+	 {% endcomment %}-->
+	{% for page in pages.list %}
+	<li>
+		<a href="/admin/pages/{{page.id}}/{{page.name}}" data-ajax-url="/admin/page-ajax/{{page.id}}/{{page.name}}" data-title="Sitnosecnana - Pages - {{page.title}}" data-target="#ajax-content" class="ajax-link">
+			<span class="hidden-xs">{{page.title}}</span>
+			<span>
+				<i class="fa fa-2x fa-plus-square pull-right prog-admin-pages-add" data-depth="{{page.depth}}" data-id="{{page.id}}"  data-ajax-url="/admin/page-ajax-new/{{page.id}}/{{page.name}}" data-title="Sitnosecnana - Pages - {{pages.root-page.title}}" data-target="#ajax-content" style="z-index: 1; color: #04B404;"></i>
+				<i class="fa fa-2x fa-trash-o pull-right prog-admin-pages-delete" data-action="/admin/pages/{{page.id}}/{{page.name}}" data-name="{{page.title}}" style="z-index: 1; color: #ff0000;"></i>
+			</span>
+		</a>
+	</li>
+ 	{% endfor %}
+	</ul>
+{%  endblock %}
+
+ 
+{% block content %}
+	{% include "admin/devoops/pages/index-ajax.html" with fullPageLoad="true" %}
+{% endblock %}
+	
+{% block custom-scripts %}
+<script type="text/javascript">
+var platformMetadataJson = {{platform-metadata-json|safe}};
+	var DemoSelect2 = (function($){
+		var platformMetadataJson = {{platform-metadata-json|safe}};
+		
+		function getTypes(){
+			var tmpls = Object.keys(platformMetadataJson),
+			length = tmpls.length,
+			ret = [];
+		
+			for (var i=0; i < length; i++){
+				ret[i] = {id: tmpls[i], text: tmpls[i]};	
+			}
+			return ret;
+		}
+		
+		function getTemplates(type){
+			var tmpls = Object.keys(platformMetadataJson[type].templates),
+				length = tmpls.length,
+				ret = [];
+			
+			for (var i=0; i < length; i++){
+				ret[i] = {id: tmpls[i], text: tmpls[i]};	
+			}
+			return ret;
+		}
+		
+		function getViews(type, template){
+			var views = platformMetadataJson[type].templates[template],
+				length = views.length || 0,
+				ret = [];
+			for (var i=0; i < length; i++){
+				ret[i] = {id: views[i], text: views[i]};	
+			}
+			return ret;
+		}
+		// Run Select2 plugin on elements
+		return function (type, template, kind){
+			var $selectView = $('#s2_views'),
+				$selectTemplate = $('#s2_template'),
+				$selectType = $('#s2_type');
+			
+			$selectView.select2({minimumResultsForSearch: 10, data: getViews(type, template), placeholder: {id: '', text: 'Select kind'}, allowClear: true});
+			$selectView.val(kind).trigger('change');
+			
+			
+			$selectTemplate.select2({minimumResultsForSearch: 10, data: getTemplates(type), placeholder: {id: '', text: 'Select template'}, allowClear: true});
+			$selectTemplate.val(template).trigger('change');
+			
+			$selectType.select2({minimumResultsForSearch: 10, data: getTypes(), allowClear: true, placeholder: {id: '', text: 'Select type'}});
+			$selectType.val(type).trigger('change');
+			
+			$selectTemplate.on('change',function(e){
+				console.log('change template:' + this.value);
+				var type = $selectType.val();
+				$selectView.find("option[value]").remove();
+				$selectView.empty().select2({data: getViews(type, this.value), minimumResultsForSearch: 10});
+				$selectView.trigger("change");
+			});
+			
+			$selectType.on('change',function(e){
+				console.log('change type:' + this.value);
+				$selectTemplate.find("option[value]").remove();
+				$selectTemplate.empty().select2({data: getTemplates(this.value), minimumResultsForSearch: 10});
+				$selectTemplate.trigger("change");
+			});
+
+		}
+		
+	})(jQuery)
+
+        $(document).ready(function() {
+            // Create jQuery-UI tabs
+            $("#tabs").tabs();
+            // Create Wysiwig editor for textare
+            $('textarea.prog-body-mce').tinymce(mce_editor);
+
+            // Add tooltip to form-controls
+            $('.form-control').tooltip();
+            //LoadSelect2Script(DemoSelect2);
+            DemoSelect2('{{page.type}}','{{page.template}}','{{page.kind}}');
+            // Load example of form validation
+            LoadBootstrapValidatorScript(DemoFormValidator);
+            // Add drag-n-drop feature to boxes
+            WinMove();
+
+            // dialogs
+            $('.prog-admin-pages-delete').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                $this = $(this);
+                // show dialog
+                BootstrapDialog.show({
+                    title: 'Confirm Delete!',
+                    type: BootstrapDialog.TYPE_DANGER,
+                    data: {
+                        method: 'DELETE',
+                        action: $this.attr('data-action')
+                    },
+                    message: 'Delete ' + $this.attr('data-name') + '?',
+                    buttons: [{
+                        label: 'Get title drop value.',
+                        action: function (dialog) {
+                            //alert(dialogItself.getData('field-title-drop').val());
+                            console.log('action: ' + dialog.getData('action'));
+                            console.log('method: ' + dialog.getData('method'));
+                            dialog.close();
+
+                        }
+                    },
+                    {
+                        label: 'Delete',
+                        action: function (dialog) {
+                            //alert(dialogItself.getData('field-title-drop').val());
+                            console.log('action: ' + dialog.getData('action'));
+                            console.log('method: ' + dialog.getData('method'));
+                            $.ajax({
+                                type: dialog.getData('method'),
+                                url: dialog.getData('action'),
+                                cache: false,
+                                success: function( data, textStatus, jqXHR ){
+                                    console.log('data: ' + data);
+                                    console.log('textStatus: ' + textStatus);
+                                    console.log('jqXHR: ' + JSON.stringify(jqXHR));
+                                    $this.closest('li').hide().prev().find('a').click();
+                                    dialog.close();
+                                },
+                                error: function(jqXHR, textStatus, errorThrown){
+                                    alert('error');
+                                    console.log('textStatus: ' + textStatus);
+                                    console.log('jqXHR: ' + JSON.stringify(jqXHR));
+                                }
+                            });
+
+                        }
+                    }]
+                });
+            });
+//<i class="prog-admin-pages-add" data-ajax-url="/admin/page-ajax-new/{{page.id}}/{{page.name}}" data-target="#ajax-content" ></i>
+            //  show
+            $('.prog-admin-pages-add').on('click',function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                $src = $(this);
+/*                $.ajax({
+                    mimeType: 'text/html; charset=utf-8',
+                    type: 'GET',
+                    url: $src.attr('data-ajax-url'),
+                    success: function(data, textStatus, jqXHR){
+                        var target = $src.attr('data-target');
+                        $(target).empty().html(data);
+                        console.log('loaded data new bla bla');
+                    },
+                    dataType: "html",
+                    async: false
+                });
+*/
+                var depth = Number.parseInt($src.attr('data-depth')) + 1, // child has parent depth + 1
+                    id = Number.parseInt($src.attr('data-id')),
+                    ord = 7,
+                    action = '/admin/pages';
+                resetForm($('#page-put')).attr('method','POST').attr('action',action).find('input[name="depth"]').val(depth)
+                    .end().find('input[name="parent_page_id"]').val(id)
+                    .end().find('input[name="ord"]').val(ord)
+                    .end().find('input[name="id"]').val(0);
+                $('h1').text($('h1').text() + ': New page');
+            });
+
+
+
+        });
+
+function resetForm($form) {
+    $form.find('input:text, input:password, input:file, select, textarea').val('');
+    $form.find('input:radio, input:checkbox')
+         .removeAttr('checked').removeAttr('selected');
+     return $form;
+}
+/*
+$(document).on('change', 'input[type="checkbox"]',function(){
+    console.log('checkbox! ' + this.checked);
+    this.value = this.checked;
+});
+*/
+</script>
+{% endblock %}

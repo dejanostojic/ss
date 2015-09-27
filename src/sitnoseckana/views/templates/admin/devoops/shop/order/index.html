@@ -1,0 +1,55 @@
+{% extends "admin/devoops/layout.html" %}
+
+{% block sidebar %}{%  endblock %}
+{% block sidebar-show %}sidebar-show{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">Products...</a></li>
+        </ol>
+        <div id="social" class="pull-right">
+
+            <a href="#" data-href="/admin/page/{{page.id}}/{{page.name}}">
+                <i class="fa fa-2x fa-trash-o pull-right prog-admin-pages-delete" data-action="" style=""></i>
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<div>
+    <h2>Order list</h2>
+    <table id="list" class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>date</th>
+            <th>phone</th>
+            <th>shipping address</th>
+            <th>total price</th>
+            <th>view</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in order-list %}
+        <tr>
+            <th><a href="/admin/shop/order/{{order.id}}">{{order.first_name}} {{order.last_name}}</a></th>
+            <th>{{order.email}}</th>
+            <th>{% format-date order.date dd-MM-yyyy,EEEE en %}</th>
+            <th>{{order.phone}}</th>
+            <th>{{order.shipping_address}}</th>
+            <th>{{order.total_price}} RSD</th>
+            <th><a href="/admin/shop/order/{{order.id}}">view</a></th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
