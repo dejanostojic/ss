@@ -1,0 +1,15 @@
+/target
+/lib
+/classes
+/checkouts
+/bin
+pom.xml
+*.jar
+*.class
+.lein-
+/.env
+*.log
+/.nrepl-por
+.idea
+.classpath
+.settings
