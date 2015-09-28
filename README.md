@@ -46,6 +46,7 @@ FLUSH PRIVILEGES;
 
 
 After db created you can start server with from root of application
+
 lein ring server
 
 ## Testing
