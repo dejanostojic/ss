@@ -16,7 +16,7 @@ Mysql 5.5.45 or MariaDB 10.0.21
 
 To start a web server for the application, run following commands:
 
--- init database
+- init database
 sql dump file is located in sql/sitnoseckana.sql
 db settings for application are in resources/properties/platform.properties
 
@@ -33,10 +33,10 @@ CREATE USER 'sitnoseckana'@'localhost' IDENTIFIED BY 'sitnoseckana123';
 GRANT ALL PRIVILEGES ON * . * TO 'sitnoseckana'@'localhost';
 FLUSH PRIVILEGES;
 
--- init database end
+- init database end
 
--- change admin email to receive emails for each order
-resources/properties/platform.properties
+- change admin email
+    in resources/properties/platform.properties key is admin_email
 
 
 After db created you can start server with from root of application
