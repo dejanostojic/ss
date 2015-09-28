@@ -5,7 +5,9 @@ Web application for food catering implemented in Clojure
 ## Prerequisites
 
 You will need [Leiningen][1] 2.3.4 or above installed.
+
 Java 1.8.0
+
 Mysql 5.5.45 or MariaDB 10.0.21
 
 [1]: https://github.com/technomancy/leiningen
@@ -33,8 +35,22 @@ FLUSH PRIVILEGES;
 
 -- init database end
 
+-- change admin email to receive emails for each order
+resources/properties/platform.properties
+
+
 After db created you can start server with from root of application
     lein ring server
+
+## Testing
+Admin panel url is /admin
+
+Admin user:
+
+- username: dostadmin
+- password: a
+
+
 
 ## License
 
