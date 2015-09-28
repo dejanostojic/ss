@@ -39,9 +39,7 @@ You can change .properties file or import db to localhost with same parameters
 
 - FLUSH PRIVILEGES;
 
-- init database end
-
-- change admin email
+### change admin email
     in resources/properties/platform.properties key is admin_email
 
 
