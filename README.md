@@ -16,7 +16,7 @@ Mysql 5.5.45 or MariaDB 10.0.21
 
 To start a web server for the application, run following commands:
 
-# init database
+### init database
 sql dump file is located in sql/sitnoseckana.sql
 
 db settings for application are in resources/properties/platform.properties
@@ -47,6 +47,7 @@ You can change .properties file or import db to localhost with same parameters
 
 After db created you can start server with from root of application
 
+### start aplication
 lein ring server
 
 ## Testing
