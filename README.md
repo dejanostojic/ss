@@ -16,7 +16,7 @@ Mysql 5.5.45 or MariaDB 10.0.21
 
 To start a web server for the application, run following commands:
 
-- init database
+# init database
 sql dump file is located in sql/sitnoseckana.sql
 
 db settings for application are in resources/properties/platform.properties
