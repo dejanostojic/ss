@@ -25,19 +25,19 @@ You can change .properties file or import db to localhost with same parameters
 
 1) log in to mysql and create schema
 
-CREATE DATABASE `sitnoseckana` /*!40100 DEFAULT CHARACTER SET utf8 */
+- CREATE DATABASE `sitnoseckana` /*!40100 DEFAULT CHARACTER SET utf8 */
 
 2) go to root of web application and import db
 
-mysql -u MYSQL-USER -p sitnoseckana < sql/sitnoseckana.sql
+- mysql -u MYSQL-USER -p sitnoseckana < sql/sitnoseckana.sql
 
 3) login to mysql and create user and privileges
 
-CREATE USER 'sitnoseckana'@'localhost' IDENTIFIED BY 'sitnoseckana123';
+- CREATE USER 'sitnoseckana'@'localhost' IDENTIFIED BY 'sitnoseckana123';
 
-GRANT ALL PRIVILEGES ON * . * TO 'sitnoseckana'@'localhost';
+- GRANT ALL PRIVILEGES ON * . * TO 'sitnoseckana'@'localhost';
 
-FLUSH PRIVILEGES;
+- FLUSH PRIVILEGES;
 
 - init database end
 
