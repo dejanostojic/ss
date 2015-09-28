@@ -8,7 +8,8 @@
             [sitnoseckana.util.date]
             [sitnoseckana.util.email]
             [postal.core]
-            [sitnoseckana.models.page :as page-daf]))
+            [sitnoseckana.models.page :as page-daf]
+            [sitnoseckana.app.properties :as props]))
 
 (defn calc-total-price
   ([product-list] (calc-total-price product-list 0))
@@ -65,7 +66,7 @@
                                                                        }))
 
                  (sitnoseckana.util.email/send-email {:from "sitnoseckana@gmail.com"
-                                                      :to "ostdejan@gmail.com"
+                                                      :to (props/get-key "admin_email")
                                                       :subject (str "Porudzbina od " email)
                                                       :body [{:type "text/plain"
                                                               :content (str "Nova porudzbina je napravljena u iznosu od: " (calc-total-price (vals (:products cart))))}] })
