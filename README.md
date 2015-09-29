@@ -1,7 +1,7 @@
 # sitnoseckana
 
 Web application for food catering implemented in Clojure
-Live preview: http://clj-dejanostojic.rhcloud.com/
+    Live preview: http://clj-dejanostojic.rhcloud.com/
 
 ## Prerequisites
 
