@@ -22,7 +22,8 @@
             [sitnoseckana.routes.register :refer [register-routes]]
             [sitnoseckana.routes.login :refer [front-login-routes]]
             [buddy.auth.accessrules :refer [wrap-access-rules] ]
-            [ring.middleware.stacktrace]))
+            [ring.middleware.stacktrace]
+            [ring.adapter.jetty :refer [run-jetty]]))
 
 (defn init []
   (println "sitnoseckana is starting in " (get props/platform "project_stage") " mode")
@@ -48,3 +49,9 @@
                          #_(wrap-defaults (-> site-defaults (assoc-in [:security :anti-forgery] true) (assoc-in [:session]  true)) ) ;; I can get token with (use 'ring.middleware.anti-forgery) anti-forgery/*anti-forgery-token*
       (wrap-access-rules options)
       (wrap-defaults site-defaults )))
+
+(defn -main [& args]
+  (let [ip (get (System/getenv) "OPENSHIFT_CLOJURE_HTTP_IP" "0.0.0.0")
+        port (Integer/parseInt (get (System/getenv) "OPENSHIFT_CLOJURE_HTTP_PORT" "8080"))]
+    (init)
+    (run-jetty app {:host ip :port port})))

@@ -14,6 +14,7 @@
                  [org.clojure/core.cache "0.6.4"]
                  [buddy "0.5.4"]
                  [com.draines/postal "1.11.3"]
+                 [ring/ring-jetty-adapter "1.3.2"]
                  ;[clj-pdf "2.0.6"]
                  ]
   :plugins [[lein-ring "0.9.1"]]
@@ -23,6 +24,7 @@
          :war-resources-path "templates"}
   :jvm-opts ["-Dfile.encoding=utf-8"]
   ;:aot :all
+  :main sitnoseckana.handler
   :profiles
   {:uberjar {:aot :all}
    :production
