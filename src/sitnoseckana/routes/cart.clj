@@ -7,38 +7,6 @@
             ))
 
 
-#_(defresource cart []
-
-             :post! (fn [ctx]
-                      (let [form-params (get-in ctx [:request :form-params])
-                            cart (get-in ctx [:request :session :cart])
-                            product-id (:productId form-params)
-                            quantity (:quantity form-params)]
-                        (println "form-params: " form-params) ;; productId, quantity, for-friend
-                        {:cart (update-in [:products product-id]  cart assoc {:id product-id
-                                                                              :quantity quantity})
-                         :product {:id product-id
-                                   :quantity quantity}}
-                        ))
-
-             :handle-ok (fn [ctx]
-
-                          (ring-response  {:body (cheshire.core/generate-string {:id product-id
-                                                                                 :quantity quantity})
-                                           :session (assoc session :cart {:cart (update-in [:products product-id]  cart assoc {:id product-id
-                                                                                                                               :quantity quantity})
-                                                                          })}
-                                                     ))
-
-             :handle-not-found  (fn [ctx]
-                                  (str "url: " (get-in ctx [:request :uri]) " not found."))
-
-             ;:etag "fixed etag" ;; used for caching by browsers...
-             :available-media-types ["text/html"]
-             )
-
-
-
 (defroutes cart-routes
            (POST ["/dost/shop/cart"] [] (fn [req]
                                            (let [form-params (get-in req [:form-params])

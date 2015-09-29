@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<h2>{% if user %}{% fmt user %}: {{user.user_name}}{% else %}{% fmt new_user %}{% endif %}</h2>
+<h2>{% if user %}{% fmt user_user %}: {{user.user_name}}{% else %}{% fmt new_user %}{% endif %}</h2>
 <div class="col-xs-12 col-sm-12">
     <form id="user-form" class="form-horizontal" action="/admin/user{% if user %}/{{user.id}}/{{user.user_name}}{% endif %}" role="form" method="{% if user %}PUT{% else %}POST{% endif %}" enctype="multipart/form-data">
         <input type="hidden" name="id" value="{{user.id|default:0}}">

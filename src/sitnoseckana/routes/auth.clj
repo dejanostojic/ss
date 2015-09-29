@@ -39,6 +39,8 @@
              :handler any-access}
             {:pattern #"^/admin/.*"
              :handler {:or [admin-access]}}
+            {:pattern #"^/admin*"
+             :handler {:or [admin-access]}}
             {:pattern #"^/.*"
              :handler any-access}])
 
@@ -47,7 +49,7 @@
 
 (defn logout
   [request]
-  (-> (redirect "/admin/login")
+  (-> (redirect (if (is-admin? request) "/admin/login" "/"))
       (assoc :session {})))
 
 
@@ -77,12 +79,9 @@
   (let [username (get-in request [:form-params "username"])
         password-guess (get-in request [:form-params "password"])
         session (:session request)
-        us (first ((user/daf :load-list) :where (str "user_name=" (mysql-str username) " and activated=1" )  :limit 1))]
-    (println "login authenticate called" username password-guess)
-    ;(println "session: " session)
-    (when us
-      (println "--------DA LI VALJA SIFRA:" (check-password password-guess (or (:password us) "no pass") )))
-    (if  (and us (check-password password-guess (:password us) ))
+        us (first ((user/daf :load-list) :where (str "user_name=" (mysql-str username))  :limit 1))]
+
+    (if (and us (:activated us) (check-password password-guess (:password us) ))
       (let [next-url (get-in request [:query-params :next] (if ajax-login
                                                              false
                                                              "/admin") )
@@ -100,7 +99,10 @@
       (if ajax-login
         {:status 401
          :headers {"Content-Type" "application/json;  charset=utf-8"},
-         :body (cheshire.core/generate-string {:resp "wrong-guess"})}
+         :body (cheshire.core/generate-string (cond
+                                                (not us) {:resp "Pogrešan email ili šifra." :send-conf-email "false"}
+                                                (not (:activated us))  {:resp "Nalog nije aktiviran" :send-conf-email "true"}
+                                                (not (check-password password-guess (:password us))) {:resp "Šifre se ne slažu" :send-conf-email "false"}))}
         (redirect "/admin/login"))
       )))
 

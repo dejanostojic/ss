@@ -428,10 +428,10 @@ function fillFormWithUserData($form,userData){
           dataType: 'json'
         }).done(function( msg ) {
             basketModule.addItem(msg);
-            var $popInfo = $('<div class="btn-cart"><button class="btn btn-default"><a href="#category-cart" data-role="show-cart-and-close-popover">Vidi korpu</a></button><button class="btn btn-dark"><a data-role="checkout-and-close-popover" href="#category-checkout">Kupi</a></button></div>');
+            var $popInfo = $('<div class="btn-cart"><a class="btn btn-default" href="#category-cart" data-role="show-cart-and-close-popover">Vidi korpu</a><a class="btn btn-dark" data-role="checkout-and-close-popover" href="#category-checkout">Kupi</a></div>');
             $popInfo.find('a[data-role="show-cart-and-close-popover"]').click(function(){$this.webuiPopover('hide');});
             $popInfo.find('a[data-role="checkout-and-close-popover"]').click(function(){$this.webuiPopover('hide');});
-            $this.webuiPopover({trigger:'manual', cache: false, title: "Dodato u korpu", closeable: true, content: $popInfo})
+            $this.webuiPopover({trigger:'click', cache: false, title: "Dodato u korpu", closeable: true, content: $popInfo})
             $this.webuiPopover('show');
             console.log( "Data Saved: " + JSON.stringify(msg) );
           }).fail(function( msg ) {
@@ -488,11 +488,12 @@ function fillFormWithUserData($form,userData){
 
 
     var login = '<form method="POST" data-role="login-popover-form" action="/dost/login"><p>Zaboravili ste sifru?</p><div class="form-group"><input type="email" class="form-control" name="username" placeholder="Email"><input type="password" class="form-control" name="password" placeholder="Password"></div>';
-        login += '<input type="hidden" name="__anti-forgery-token2" val="'  + '"/>';
         login += '<button type="submit" class="btn btn-dark button-send">Uloguj se</button></form>';
     $('a[data-role="login-popover-link"]').webuiPopover({trigger:'click', cache: false, title: "Login.", closeable: true, content: login});
     $('body').on('submit', 'form[data-role="login-popover-form"]', function(e){
-          var formData = $(this).serialize();
+
+          var $form = $(this),
+              formData = $form.serialize();
           e.preventDefault();
           $.ajax({
               type: "POST",
@@ -503,19 +504,68 @@ function fillFormWithUserData($form,userData){
               setLoggedInUserData(msg['user-data'].user);
               fillFormWithUserData('form[data-role="order-form"]',msg['user-data'].user);
               $('a[data-role="login-popover-link"]').webuiPopover('hide');
-           }).error(function(msg){
-           alert('eror' +msg)
+              $('a[data-role="login-popover-link"]').toggleClass('hide').siblings('[data-role="loged-in-popover-link"]').toggleClass('hide').text(msg['user-data'].user.email);
+           }).fail(function(msg){
+           console.log('msg send-conf-email> ' + msg['send-conf-email'])
+               if (msg.responseJSON['send-conf-email']){
+                   console.log('show link!');
+                   if ($form.find('[data-role="resend-conf-email"').size === 0){
+                       $form.append('<a href="#" class="" data-role="resend-conf-email">Nalog nije aktiviran. Pošaljite aktivacioni email.</a>');
+                   }
+               }
+               console.log('eror' +JSON.stringify(msg));
            });
      });
 
-    var logedInOptions = '<ul><li class="shopping"><a href="/porudzbine.html">Vaše porudzbine</a></li><li class="shopping"><a href="/dost/logout">Logout</a></li></ul>'
+    // resend conf email listener
+    $('body').on('click', '[data-role="resend-conf-email"]',function(e){
+        e.preventDefault();
+        var $elem = $(this),
+            email = $elem.closest('form').find('input[type="email"]').val();
+
+        $.ajax({
+              type: "POST",
+              url: '/dost/register/resend-conf-email',
+              data: {email: email},
+              dataType: 'json'
+           }).success(function(resp){
+               $elem.replaceWith('<span>Kliknite na aktivacioni link koji ste dobili u poruci.</span>');
+           });
+    });
+    var logedInOptions = '<ul><li class="shopping"><a href="/porudzbine.html">Vaše porudzbine</a></li><li class="shopping"><a href="/dost/logout">Logout</a></li></ul>';
     $('a[data-role="loged-in-popover-link"]').webuiPopover({trigger:'click', cache: false, title: "Login.", closeable: true, content: logedInOptions});
 
     $('body').on('click', 'a[data-role="fill-form-with-account-data"]', function(e){
         e.preventDefault();
-        fillFormWithUserData('form[data-role="order-form"]',loggedInUserData);
+        if (loggedInUserData){
+            fillFormWithUserData('form[data-role="order-form"]',loggedInUserData);
+        }else{
+
+        }
     });
      // fill loged in user data
-     $('a[data-role="loged-in-user-fill-form"]').webuiPopover({trigger:'hover', cache: false, title: "Popuni formu podacima iz naloga.", closeable: true, content: '<a href="#" data-role="fill-form-with-account-data" class="btn btn-default btn-small">Popuni formu.</a>'});
+     function fillForm(){
+         if (loggedInUserData) {
+             return '<a href="#" data-role="fill-form-with-account-data" class="btn btn-default btn-small">Popuni formu.</a>';
+         }else {
+             return '<a href="#" class="btn btn-default" data-role="login-from-order-form">uloguj se</a>';
+         }
+     }
+
+    $('body').on('click','a[data-role="login-from-order-form"]',function(e){
+        e.preventDefault();
+        var $login = $('a[data-role="login-popover-link"]')
+         $('html, body').animate({
+                scrollTop: $login.offset().top
+            }, 400, function(){
+                $login.webuiPopover('show');
+            });
+    });
+
+     $('a[data-role="loged-in-user-fill-form"]').webuiPopover({trigger:'hover', cache: false, title: "Popuni formu podacima iz naloga.", closeable: true, content: fillForm});
+     $('a[data-role="loged-in-user-fill-form"]').click(function(e){
+         e.preventDefault();
+         $(this).webuiPopover('show');
+     });
 
 }(jQuery))

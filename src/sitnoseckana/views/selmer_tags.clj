@@ -54,3 +54,4 @@
 
 (selmer.filters/add-filter! :format-date  (fn [date format lang] (sitnoseckana.util.date/format-date date format lang)))
 (selmer.filters/add-filter! :get-time (fn [date] (.getTime date)))
+(selmer.filters/add-filter! :bool-not (fn [bool] (not (java.lang.Boolean/parseBoolean bool))))

@@ -12,5 +12,5 @@
                                           :headers {"content-type" "text/html"}
                                           :body (str "You've visited test page " request "\n\n\n"
                                                      "session: " (get-in request [:session ]))})))
-           (GET ["/dost/logout"] [_]  auth/logout  )
+           (GET ["/dost/logout"] [_] auth/logout)
            (POST "/dost/login" [] #(auth/login-authenticate %1 true)))

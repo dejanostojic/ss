@@ -50,17 +50,43 @@
             <th>username</th>
             <th>email</th>
             <th>activated</th>
+            <th>password change</th>
         </tr>
         </thead>
         <tbody>
         {% for user in user-list %}
         <tr>
-            <th><a href="/admin/user/{{user.id}}/{{user.user_name}}">{{user.user_name}}</a></th>
-            <th>{{user.email}}</th>
-            <th>{{user.activated}}</th>
+            <td><a href="/admin/user/{{user.id}}/{{user.user_name}}">{{user.user_name}}</a></td>
+            <td>{{user.email}}</td>
+            <td><a href="/admin/user/{{user.id}}/{{user.user_name}}/activate" title="Click to change" data-role="activate" data-action="{{activated|bool-not}}">{{user.activated}}</a></td>
+            <td><a href="/admin/user/{{user.id}}/{{user.user_name}}/password-change"><i class="fa fa-key"></i> change</a></td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
+{% endblock %}
+
+
+{% block custom-scripts %}
+<script type="text/javascript">
+    (function($){
+        function postActivation($elem){
+            $.ajax({
+                type: "POST",
+                url: $elem.attr('href'),
+                data: {activated: $elem.attr('data-action')},
+                dataType: 'json'
+            }).success(function(resp){
+                $elem.text(resp.activated).attr('data-action', !resp.activated);
+            }).error(function(resp){console.log('error: ' +resp)});
+        }
+
+        $('[data-role="activate"]').on('click',function(e){
+            e.preventDefault();
+            postActivation($(this));
+        });
+
+    }(jQuery))
+</script>
 {% endblock %}
