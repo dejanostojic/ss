@@ -2,6 +2,8 @@
 
 Web application for food catering implemented in Clojure
 
+Live preview: http://clj-dejanostojic.rhcloud.com/
+
 ## Prerequisites
 
 You will need [Leiningen][1] 2.3.4 or above installed.
