@@ -383,9 +383,13 @@ $('<div class="row cart-buttons"><div class="col-xs-12"><div class="product-btn"
 var loggedInUserData = null;
 
 function addAntiForgery(antiForgeryTocken){
-	$( document ).ajaxSend(function( event, jqxhr, settings ) {
-		jqxhr.setRequestHeader("x-csrf-token", antiForgeryTocken);
-	});
+    if (antiForgeryTocken){
+        $( document ).ajaxSend(function( event, jqxhr, settings ) {
+                jqxhr.setRequestHeader("x-csrf-token", antiForgeryTocken);
+    	});
+    }else{
+        document.location.reload();
+    }
 }
 
 function setLoggedInUserData(userData){
