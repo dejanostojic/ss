@@ -586,9 +586,8 @@
 -->
 <script>
 
-antiForgeryTocken = '{% csrf-token %}';
 addAntiForgery('{% csrf-token %}')
-console.log('forg: ' + antiForgeryTocken);
+console.log('forg: {% csrf-token %}');
 
 basketModule.init({{request.session.cart.products|json|safe}} || {}, 'ul[data-role="cart-menu-list"]', '[data-role="view-cart-container"]');
 basketModule.print();
