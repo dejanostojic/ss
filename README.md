@@ -37,7 +37,7 @@ You can change .properties file or import db to localhost with same parameters
 
 - CREATE USER 'sitnoseckana'@'localhost' IDENTIFIED BY 'sitnoseckana123';
 
-- GRANT ALL PRIVILEGES ON * . * TO 'sitnoseckana'@'localhost';
+- GRANT ALL PRIVILEGES ON sitnoseckana.* TO 'sitnoseckana'@'localhost';
 
 - FLUSH PRIVILEGES;
 
