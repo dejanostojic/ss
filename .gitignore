@@ -12,3 +12,5 @@ pom.xml
 .idea
 .classpath
 .settings
+sitnoseckana.iml
+.nrepl-port
