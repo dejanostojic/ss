@@ -54,12 +54,32 @@ lein ring server
 ## Testing
 Admin panel url is /admin
 
-Admin user:
+- Admin user:
+  - username: dostadmin
+  - password: a
 
-- username: dostadmin
-- password: a
+- Member user:
+  - username: member1@sharklasers.com
+  - password: member1
 
+### Privileges
 
+* Anonymous access actions
+  * Can view meals and make orders
+  
+* Member access actions
+  * register after purchase
+  * review list of his orders and details for each one.
+
+* Admin access actions
+  * Access admin panel
+  * Add/delete pages (can choose templates and chagne content)
+  * View all products, create new or change or delete existing
+  * View all product types, create new or change or delete existing, define price for existing product types
+  * Add products to weekly menu, and change active week (usualy on saturday when menu for next week is completed)
+  * Mannage users
+  * View orders (making new orders is done in front end. It is enough to fill existing user email and order will be grouped in his account)
+  * View dashboard at the moment just income per product groups
 
 ## License
 
