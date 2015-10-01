@@ -69,6 +69,7 @@ Admin panel url is /admin
   
 * Member access actions
   * register after purchase
+  * speed up orderin process with auto filling form from his account
   * review list of his orders and details for each one.
 
 * Admin access actions
