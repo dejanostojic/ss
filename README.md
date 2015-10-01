@@ -2,7 +2,8 @@
 
 Web application for food catering implemented in Clojure
 
-Live preview: http://clj-dejanostojic.rhcloud.com/
+Live preview: http://clj-dejanostojic.rhcloud.com/ 
+(*note* sending emails wont work in live preview because of gmail asuming my account is stolen, server is located in USA and i created it from Belgrade)
 
 ## Prerequisites
 
