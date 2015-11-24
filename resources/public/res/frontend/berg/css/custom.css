@@ -2109,7 +2109,7 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-dark {
   color: #ffffff;
-  background-color: #111111;
+  background-color: #880E4F;
   border-color: #111111;
 }
 .btn-dark:hover,
@@ -7010,7 +7010,7 @@ body.nav-center #main-navbar {
 /* 11. Menu section */
 /* ------------------------------------------------------ */
 .menu h2 {
-  background: #111111;
+  background: #053107;
   margin: 0 -15px;
   padding: 25px 15px;
   color: #ffffff;
@@ -7249,7 +7249,7 @@ body.nav-center #main-navbar {
 .list-category li span,
 .list-category li a {
   padding: 15px;
-  color: #333333;
+  color: #053107;
   font-weight: 400;
   font-size: 14px;
   position: relative;
@@ -7430,7 +7430,7 @@ body.nav-center #main-navbar {
 }
 .menu-list .menu-category {
   padding: 25px 15px;
-  background: #111;
+  background: #006C52;
   color: #fff;
 }
 .menu-list .menu-category h2 {
@@ -8102,7 +8102,7 @@ body.nav-center #main-navbar {
   width: 50%;
 }
 .shop .shop-list ul li a {
-  color: #333333;
+  color: #053107;
   padding: 20px 15px;
   font-weight: 400;
   font-size: 14px;
@@ -10013,7 +10013,7 @@ lesshat-selector {
 /* 19. Footer section */
 /* ------------------------------------------------------ */
 #footer {
-  background: #111;
+  background: #053107;
   padding: 30px 0 ;
   color: #fff;
   -webkit-backface-visibility: hidden;

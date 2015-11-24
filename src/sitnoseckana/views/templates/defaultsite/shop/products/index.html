@@ -8,9 +8,9 @@
     <meta name="msapplication-tap-highlight" content="yes" />
 
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
-    <link href='http://fonts.googleapis.com/css?family=Cabin:400,400italic,500,600,700' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.googleapis.com/css?family=Cabin:400,400italic,500,600,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <!--		 Place favicon.ico and apple-touch-icon.png in the root directory -->
+    		 Place favicon.ico and apple-touch-icon.png in the root directory -->
     {% include "snippets/favicons.html" %}
     <link rel="stylesheet" href="/res/frontend/berg/css/custom.css">
     <link rel="stylesheet" href="/res/frontend/berg/css/fix.css">
@@ -42,10 +42,10 @@
             <div class="main-nav">
                 <ul class="pull-right">
                     <li>
-                        <a href="/" class="">home</a>
+                        <a href="/" class="">почетна</a>
                     </li>
                     <li>
-                        <a href="#" class="">orders</a>
+                        <a href="#" class="">Наруџбине</a>
                     </li>
                 </ul>
             </div>
@@ -112,13 +112,13 @@
 
 
 
-    <div class="section-intro"  data-opacity-start="30" data-opacity-end="100" data-background="/res/frontend/berg/img/str2.jpg">
+    <div class="section-intro"  data-opacity-start="30" data-opacity-end="100" data-background="/res/frontend/berg/img/intro.jpg">
         <div class="pre-content">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h1 class="parallax-element-first">Sitnoseckana meni</h1>
-                        <p class="parallax-element-second">Vaša doza sirove energije</p>
+                        <h1 class="parallax-element-first">Ситносецкана мени</h1>
+                        <p class="parallax-element-second">Ваша дневна доза сирове енергије</p>
                     </div>
                 </div>
             </div>
@@ -137,21 +137,21 @@
                 <span class="filter" data-filter=".menu-meals">Prikaži sve</span>
             </li>
             <li>
-                <span class="filter" data-filter=".category-1">obroci</span>
+                <span class="filter" data-filter=".category-1">Оброци</span>
             </li>
             <li>
-                <span class="filter" data-filter=".category-2">sokovi</span>
+                <span class="filter" data-filter=".category-2">Сокови</span>
             </li>
             <li>
-                <span class="filter" data-filter=".category-3">Smutiji</span>
+                <span class="filter" data-filter=".category-3">Смутији</span>
             </li>
             <li class="shop-list">
                 <ul>
                     <li class="shopping">
-                        <a href="#category-checkout">Kupi</a>
+                        <a href="#category-checkout">Купи</a>
                     </li>
                     <li class="shopping-cart">
-                        <span class="filter cart" data-filter=".category-cart">Cart</span>
+                        <span class="filter cart" data-filter=".category-cart">Корпа</span>
                         <ul class="show-cart" data-role="cart-menu-list">
                            <!-- <li class="product">
                                 <a href="product.html" class="img-product">
@@ -203,7 +203,7 @@
 
                         <a href="/{{page-attrs.order-item-link}}" class="{% if request.session.user-data.username %}{% else %}hide{% endif%}" data-role="loged-in-popover-link">{{request.session.user-data.user.first_name}} {{request.session.user-data.user.last_name}}</a>
 
-                        <a href="#" class="{% if request.session.user-data.username %}hide{% endif%}" data-role="login-popover-link">Login</a>
+                        <a href="#" class="{% if request.session.user-data.username %}hide{% endif%}" data-role="login-popover-link">Улогуј се</a>
 
 
                     </li>
@@ -215,7 +215,7 @@
             <div class="mix category-cart" data-myorder="1">
                 <div class="row">
                     <div class="col-xs-12 menu-category">
-                        <h2>cart</h2>
+                        <h2>Корпа</h2>
                     </div>
                 </div>
                 <div class="row" id="cart">
@@ -223,13 +223,13 @@
                         <div class="container">
                             <div class="row cart-header">
                                 <div class="col-xs-4 col-sm-5">
-                                    <h5 class="product-name">Product name</h5>
+                                    <h5 class="product-name">Име јела</h5>
                                 </div>
                                 <div class="col-xs-2">
-                                    <h5 class="product-price">Unit price</h5>
+                                    <h5 class="product-price">Цена</h5>
                                 </div>
                                 <div class="col-xs-2">
-                                    <h5 class="product-quantity">Qty</h5>
+                                    <h5 class="product-quantity">Количина</h5>
                                 </div>
                                 <div class="col-xs-2">
                                     <h5 class="product-subtotal">Subtotal</h5>
@@ -297,7 +297,7 @@
              <div id="reservation" class="mix category-checkout" data-myorder="2">
                 <div class="row">
                     <div class="col-xs-12 menu-category">
-                        <h2>Kupi</h2>
+                        <h2>Купи</h2>
                     </div>
                 </div>
                  <div class="reservation-content container">
@@ -368,7 +368,7 @@
             <div class="mix menu-meals category-1" data-myorder="1">
                 <div class="row">
                     <div class="col-xs-12 menu-category">
-                        <h2>Obroci</h2>
+                        <h2>Оброци</h2>
                     </div>
                 </div>
                 <div class="container">
@@ -387,7 +387,7 @@
                                         <span class="new-price item-price">{{variation.price}}</span>{% if forloop.first %}/{% endif %}
                                         {% endfor %}
                                     </div>
-                                    <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">naruči</a></div>
+                                    <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">Наручи</a></div>
                                 </div>
                                 <div class="item-action hide" data-role="item-action">
                                     <div class="menu-details">
@@ -407,7 +407,7 @@
             <div class="mix menu-meals category-2 drinks-section" data-myorder="2">
                 <div class="row">
                     <div class="col-xs-12 menu-category">
-                        <h2>Sokovi</h2>
+                        <h2>Сокови</h2>
                     </div>
                 </div>
                 <div class="container">
@@ -437,7 +437,7 @@
             <div class="mix menu-meals category-3 drinks-section" data-myorder="3">
                 <div class="row">
                     <div class="col-xs-12 menu-category">
-                        <h2>Smutiji</h2>
+                        <h2>Смутији</h2>
                     </div>
                 </div>
                 <div class="container">
@@ -475,27 +475,27 @@
             <i class="fa fa-arrow-circle-o-up"></i>
         </a>
 
-        <h2>Sitnoseckana</h2>
+        <h2>Ситносецкана</h2>
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center v-card">
 
                     <div class="col-sm-6 col-lg-3">
                         <div class="open-daily">
-                            <span class="day">Promo smuti</span>
-                            <span class="hours">Samo 130 RSD</span>
+                            <span class="day">Промо смути</span>
+                            <span class="hours">Само 130 РСД</span>
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-3">
                         <div class="open-daily">
-                            <span class="day">Super sejk</span>
-                            <span class="hours">200 RSD</span>
+                            <span class="day">Супер шејк</span>
+                            <span class="hours">200 РСД</span>
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-3">
                         <div class="simple-contact">
-                            <span class="address">Poslastica nedelje</span>
-                            <span class="postal-code">240 RSD</span>
+                            <span class="address">Посластица недеље</span>
+                            <span class="postal-code">240 РСД</span>
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-3">
