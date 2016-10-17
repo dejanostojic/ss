@@ -33,7 +33,9 @@
                          pattern (second args)
                          lang (if (= 3 (count args))
                                 (nth args 2)
-                                (get-in ctx [:page :language_code]))]
+                                ;(get-in ctx [:page :language_code])
+                                "ci"
+                                )]
                      (sitnoseckana.util.date/format-date date pattern lang)
                      )))
 

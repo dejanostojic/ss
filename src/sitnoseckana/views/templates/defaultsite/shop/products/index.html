@@ -23,93 +23,9 @@
     <!--content-->
 
 
-    <nav id="main-navbar" class="hidden-xs hidden-sm">
-        <div class="nav hidden-xs">
-            <div class="main-reorder pull-right">
-                <a href="#">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </div>
+    {% include snippets/defaultsite/main-navbar.html %}
 
-            <div class="logo pull-left">
-                <a href="/">
-                    <figure>
-                        <img src="/res/frontend/berg/img/logo1.png" class="light-logo" alt="Berg HTML Theme"/>
-                        <img src="/res/frontend/berg/img/logo2.png" class="dark-logo" alt="Berg HTML Theme"/>
-                    </figure>
-                </a>
-            </div>
-            <div class="main-nav">
-                <ul class="pull-right">
-                    <li>
-                        <a href="/" class="">почетна</a>
-                    </li>
-                    <li>
-                        <a href="#" class="">Наруџбине</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div id="mobile-nav" class="visible-xs visible-sm">
-        <header>
-            <div class="container-fluid">
-                <ul class="menu-header">
-                    <li class="pull-left">
-                        <a href="index.html" class="logo">
-                            <figure>
-                                <img src="/res/frontend/berg/img/logo2.png" alt="Berg HTML Theme"/>
-                            </figure>
-                        </a>
-                    </li>
-                    <li class="reorder pull-right"><a href="#" title=""><i class="fa fa-bars"></i></a></li>
-                </ul>
-            </div>
-        </header>
-        <div class="" id="flyout-container">
-            <ul id="mobile-navbar" class="nav flyout-menu main-nav nav-height">
-                <li class="nav-item">
-                    <a title="" href="index.html">home</a>
-                </li>
-                <li class="nav-item">
-                    <a title="" href="blog.html">blog</a>
-                    <span class="open-children"><i class="fa fa-angle-down"></i></span>
-                    <ul class="subnav">
-                        <li>
-                            <a href="blog.html"><span>blog</span></a>
-                        </li>
-                        <li><a href="post.html" title=""><span>post 1</span></a></li>
-                        <li><a href="post2.html" title=""><span>post 2</span></a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a title="" href="restaurant.html">Restaurant</a>
-                </li>
-                <li class="nav-item">
-                    <a title="" href="menu.html" class="">Menu</a>
-                    <span class="open-children"><i class="fa fa-angle-down"></i></span>
-                    <ul class="subnav">
-                        <li><a href="menu.html" title=""><span>Menu 1</span></a></li>
-                        <li><a href="menu2.html" title=""><span>Menu 2</span></a></li>
-                        <li><a href="menu3.html" title=""><span>Menu 3</span></a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a title="" href="reservation.html">Reservation</a>
-                </li>
-                <li class="nav-item">
-                    <a title="" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a title="" href="shop.html">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a title="" href="gallery.html">Gallery</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
+    {% include snippets/defaultsite/mobile-nav.html %}
 
 
     <div class="section-intro"  data-opacity-start="30" data-opacity-end="100" data-background="/res/frontend/berg/img/intro.jpg">
@@ -117,8 +33,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h1 class="parallax-element-first">Ситносецкана мени</h1>
-                        <p class="parallax-element-second">Ваша дневна доза сирове енергије</p>
+                        <h1 class="parallax-element-first">Ситно сецкана</h1>
+                        <p class="parallax-element-second"><a href="/jelovnik/meni_okt.10-14.pdf" target="_blank">Преузмите јелевник у ПДФ-у.</a> Телефон: 064/27-33-712</p>
                     </div>
                 </div>
             </div>
@@ -145,6 +61,7 @@
             <li>
                 <span class="filter" data-filter=".category-3">Смутији</span>
             </li>
+            {% comment %}
             <li class="shop-list">
                 <ul>
                     <li class="shopping">
@@ -207,6 +124,7 @@
 
 
                     </li>
+                    {% endcomment %}
                 </ul>
             </li>
         </ul>
@@ -303,9 +221,9 @@
                  <div class="reservation-content container">
                      <div class="row">
                          <div class="col-sm-4 pull-right">
-                             <h4>Promo</h4>
-                             <p>TO DO! Prikazati ovde neko promo jelo. Pametna preporuka u zavisnosti šta ima u korpi ili šta je ranije naručivao. </p>
-                         </div>
+                         <!--    <h4>Promo</h4>
+                             <p>TO DO! Prikazati ovde neko promo jelo. Pametna preporuka u zavisnosti šta ima u korpi ili šta je ranije Наручиvao. </p>
+                         --></div>
                          <div class="col-xs-12 col-sm-8 ">
                              <div class="reservation-form row">
                                  <form role="form" name="date-reservation-form" data-role="order-form" action="/dost/shop/order" method="POST" class="simform" autocomplete="off">
@@ -376,25 +294,25 @@
                         {% for menu in page-attrs.menu-items %}
                             <div class="menu-item" data-role="menu-item">
                                 <div class="item-description" data-role="item-description">
-                                    <span class="">{{menu.shop_product.shop_product_type.name}}</span>
-                                    <span class="pull-right">{% format-date menu.date EEEE %}</span>
-                                    <br/>
+                                    <p>{% format-date menu.date EEE %}</p>
 
-                                    <h5>{{menu.shop_product.name}}</h5>
+                                    <span class="">{{menu.shop_product.shop_product_type.name}}</span>
+
+                                    <h5 style="margin-top: 10px;">{{menu.shop_product.name}}</h5>
                                     <p>{{menu.shop_product.ingredients}}</p>
                                     <div class="menu-details">
                                         {% for variation in menu.shop_product.shop_product_type.variations %}
-                                        <span class="new-price item-price">{{variation.price}}</span>{% if forloop.first %}/{% endif %}
+                                        <span class="new-price item-price">{{variation.price|double-format:0}}</span>{% if forloop.first %} /{% endif %}
                                         {% endfor %}
                                     </div>
-                                    <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">Наручи</a></div>
+                                    <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm hide">Наручи</a></div>
                                 </div>
                                 <div class="item-action hide" data-role="item-action">
                                     <div class="menu-details">
                                         {% for variation in menu.shop_product.shop_product_type.variations %}
                                         <div class="shop-button" data-role="add-to-cart">
                                             <label>Količina: </label><input type="number" min="0" value="1" style="width: 40px;" />
-                                            <a href="#" class="btn btn-color btn-sm" data-role="shop-product-variation-button" data-product-id="{{menu.shop_product.id}}" data-formatted-date="{% format-date menu.date yyyy-MM-dd %}" data-type-id="{{variation.type_id}}" data-variation-id="{{variation.variation_id}}">{{variation.price}} {{variation.shop_variation.name}}</a>
+                                            <a href="#" class="btn btn-color btn-sm" data-role="shop-product-variation-button" data-product-id="{{menu.shop_product.id}}" data-formatted-date="{% format-date menu.date yyyy-MM-dd %}" data-type-id="{{variation.type_id}}" data-variation-id="{{variation.variation_id}}">{{variation.price|double-format:0}} {{variation.shop_variation.name}}</a>
                                         </div>
                                         {% endfor %}
                                     </div>
@@ -415,9 +333,9 @@
                         {% for juice in juices %}
                         <div class="menu-item" data-role="menu-item">
                             <div class="item-description">
-                                <h5><span>{{juice.name}}</span><span class="new-price pull-right item-price">{{juice.price}}</span></h5>
+                                <h5><span>{{juice.name}}</span><span class="new-price pull-right item-price">{{juice.price|double-format:0}}</span></h5>
                                 <p>{{juice.ingredients}}</p>
-                                <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">naruči</a></div>
+                                <div class="shop-button hide" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">Наручи</a></div>
                                 <div class="item-action menu-details hide" data-role="item-action">
                                     <div class="shop-button" data-role="add-to-cart">
                                         <select class="form-control" data-role="date-select">
@@ -445,9 +363,9 @@
                         {% for shake in shakes %}
                         <div class="menu-item" data-role="menu-item">
                             <div class="item-description">
-                                <h5><span>{{shake.name}}</span><span class="new-price pull-right item-price">{{shake.price}}</span></h5>
+                                <h5><span>{{shake.name}}</span><span class="new-price pull-right item-price">{{shake.price|double-format:0}}</span></h5>
                                 <p>{{shake.ingredients}}</p>
-                                <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">naruči</a></div>
+                                <div class="shop-button hide" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">Наручи</a></div>
                                 <div class="item-action menu-details hide" data-role="item-action">
                                     <div class="shop-button" data-role="add-to-cart">
                                         <select class="form-control" data-role="date-select">
@@ -469,65 +387,8 @@
     </section>
 
     <div id="footer-spacer"></div>
-    <footer id="footer" class="text-center">
+    {% include snippets/defaultsite/footer.html %}
 
-        <a href="#" class="to-the-top">
-            <i class="fa fa-arrow-circle-o-up"></i>
-        </a>
-
-        <h2>Ситносецкана</h2>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center v-card">
-
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="open-daily">
-                            <span class="day">Промо смути</span>
-                            <span class="hours">Само 130 РСД</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="open-daily">
-                            <span class="day">Супер шејк</span>
-                            <span class="hours">200 РСД</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="simple-contact">
-                            <span class="address">Посластица недеље</span>
-                            <span class="postal-code">240 РСД</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="simple-contact">
-                            <span class="mobile"><a href="#">064/27-33-712</a></span>
-                            <span class="email"><a href="#">vocnasalata@yahoo.co.uk</a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <ul class="social-icon clearfix">
-            <li>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-pinterest"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-google-plus"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-            </li>
-        </ul>
-
-
-        <p class="copyrights">© 2014 <a href="index">Berg</a>. All Rights Reserved. </p>
-    </footer>
     <div class="gallery-wrapper"></div>
 
     <div id="preloader">

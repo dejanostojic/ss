@@ -1,0 +1,49 @@
+<ul id="mobile-navbar" class="nav flyout-menu main-nav nav-height">
+    {% for navitem in nav-prim %}
+    <li class="nav-item">
+        <a title="{{navitem.title}}" href="{{navitem.url}}">{{navitem.title}}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% comment %}
+<ul id="mobile-navbar" class="nav flyout-menu main-nav nav-height">
+    <li class="nav-item">
+        <a title="" href="index.html">home</a>
+    </li>
+    <li class="nav-item">
+        <a title="" href="blog.html">blog</a>
+        <span class="open-children"><i class="fa fa-angle-down"></i></span>
+        <ul class="subnav">
+            <li>
+                <a href="blog.html"><span>blog</span></a>
+            </li>
+            <li><a href="post.html" title=""><span>post 1</span></a></li>
+            <li><a href="post2.html" title=""><span>post 2</span></a></li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a title="" href="restaurant.html">Restaurant</a>
+    </li>
+    <li class="nav-item">
+        <a title="" href="menu.html" class="">Menu</a>
+        <span class="open-children"><i class="fa fa-angle-down"></i></span>
+        <ul class="subnav">
+            <li><a href="menu.html" title=""><span>Menu 1</span></a></li>
+            <li><a href="menu2.html" title=""><span>Menu 2</span></a></li>
+            <li><a href="menu3.html" title=""><span>Menu 3</span></a></li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a title="" href="reservation.html">Reservation</a>
+    </li>
+    <li class="nav-item">
+        <a title="" href="contact.html">Contact</a>
+    </li>
+    <li class="nav-item">
+        <a title="" href="shop.html">Shop</a>
+    </li>
+    <li class="nav-item">
+        <a title="" href="gallery.html">Gallery</a>
+    </li>
+</ul>
+{% endcomment %}

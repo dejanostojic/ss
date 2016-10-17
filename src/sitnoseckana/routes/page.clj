@@ -3,8 +3,9 @@
             [liberator.core :refer [defresource resource request-method-in]]
             [selmer.parser :as parser]
             [sitnoseckana.models.page :as page-daf]
+            [sitnoseckana.routes.page-url :as page-url]
             [sitnoseckana.routes.platform-metadata])
-  (:use [sitnoseckana.routes.page-url])
+  ;(:use [sitnoseckana.routes.page-url])
   (:import (java.util Locale)))
 
 
@@ -62,47 +63,65 @@
 
 (defn resolve-page
   "finds template for provided vector of names and returns view to render"
-  [names lang]
-  (loop [l-names names
-         cur-page (page-daf/load-root lang)
-         br-pt 0]
-    (if (empty? l-names)                                    ;; end of url, all names found
-      {:page cur-page
-       :view (:kind cur-page)}
-      (let [name (first l-names)
-            pa   (find-page (page-daf/load-all)  cur-page name)]
-        (if (nil? pa)                                       ; if no child we stop
-          {:page  cur-page                                  ; have found page
-           :br-pt br-pt                                     ;found breaking point
-           :view  (cond
-                    (and (zero? (try (Integer/parseInt name) (catch NumberFormatException nfe 0)))
-                         (get-in plugins [(:type cur-page) :templates (:template cur-page) :views name] false) ) name           ; can't find pages and last name is not number and there is view with that name
-                    (not (zero? (try (Integer/parseInt name) (catch NumberFormatException nfe 0)))) "view" ; we came to number so it is a view
-                    :else "index"
-                    )
-           }
-          (recur (rest l-names) pa (inc br-pt)))))))
+
+  ([names lang] (resolve-page names lang (page-daf/load-all)))
+  ([names lang pages]
+   (loop [l-names names
+          cur-page (page-daf/load-root lang)
+          br-pt 0]
+     (if (empty? l-names)                                    ;; end of url, all names found
+       {:page cur-page
+        :view (:kind cur-page)}
+       (let [name (first l-names)
+             pa   (page-url/find-page pages  cur-page name)]
+         (if (nil? pa)                                       ; if no child we stop
+           {:page  cur-page                                  ; have found page
+            :br-pt br-pt                                     ;found breaking point
+            :view  (cond
+                     (and (zero? (try (Integer/parseInt name) (catch NumberFormatException nfe 0)))
+                          (get-in plugins [(:type cur-page) :templates (:template cur-page) :views name] false) ) name           ; can't find pages and last name is not number and there is view with that name
+                     (not (zero? (try (Integer/parseInt name) (catch NumberFormatException nfe 0)))) "view" ; we came to number so it is a view
+                     :else "index"
+                     )
+            }
+           (recur (rest l-names) pa (inc br-pt)))))))
+  )
 
 (defn handle-page-url-ok
   "Handles requests (e.g. /somePage/someSection.html).
   Splits the path on separator char '/', determines the language, finds the page and renders appropriate view"
   [ctx path]
     (let [splited-path (clojure.string/split path #"/")
-          nam-lang  (if-some [lang (some #{(first splited-path)} langs)]
+          num-lang  (if-some [lang (some #{(first splited-path)} langs)]
                              {:lang lang
                               :names (rest splited-path)}
                              {:lang (first langs) ;; default lang is first in list
                               :names splited-path})
-          page-data (resolve-page (:names nam-lang) (:lang nam-lang))
+          page-data (resolve-page (:names num-lang) (:lang num-lang))
           locale (Locale/forLanguageTag "sr-Latn")
           page (:page page-data)
           view (:view page-data)
-          rw-params (get-rw-params page-data splited-path)]
+          rw-params (page-url/get-rw-params page-data splited-path)
+          lang-code (:lang num-lang)
+          root (page-daf/load-root lang-code)
+          pages (page-url/mark-on-path (filter :published (page-daf/load-list :where (str "language_code='" lang-code "'") :ord "depth, ord")) page)
+          pages (map (fn [page] (assoc page :url (page-url/create-url pages page)))
+                     pages)
+          navitems (map #(assoc % :url (page-url/create-url pages %)
+                                  :title (:title %)) pages)
+          is-home-page? (= (:id page) (:id root))
+          handler-in {
+                      :pages         pages
+                      :is-home-page? is-home-page?
+                      :nav-prim      (filter :primary_navigation navitems)
+                      :page page
+                      }
+          ]
 ;(println "getin: " [(:type page) :templates (:template page) :views view])
 ;(println "handle page ok: " (get-in plugins [(:type page) :templates (:template page) :views view]) )
 ;(println "parser/render-file: " (str site "/" (:type page) "/" (:template page) "/" view page-suffix))
           (parser/render-file (str site "/" (:type page) "/" (:template page) "/" view page-suffix)
-            ((get-in plugins [(:type page) :templates (:template page) :views view]) (merge (assoc ctx :page page) rw-params) ))))
+            ((get-in plugins [(:type page) :templates (:template page) :views view]) (merge ctx handler-in rw-params) ))))
 
 (defresource page [path]
          :handle-ok (fn [ctx]

@@ -1,5 +1,6 @@
 (ns sitnoseckana.routes.page-url
-  (:require [sitnoseckana.models.page :as page-daf]))
+  (:require [sitnoseckana.models.page :as page-daf]
+            [sitnoseckana.routes.platform-metadata]))
 
 (defn find-parent
   "return parent page by parent page id"
@@ -20,9 +21,23 @@
   [pages parent name]
   (first (filter #(and (== (:id parent) (:parent_page_id %)) (= name (:name %))) pages)))
 
+(defn mark-on-path
+  "Takes pages and current page. Appends :on-path marker to each page that is ancestor of current page."
+  [pages page]
+  (if (or (nil? page) (not (:parent_page_id page)) (zero? (:parent_page_id page)))
+    pages
+    (recur (map (fn [pg] (assoc pg :on-path (or (:on-path pg)
+                                                (= (:parent_page_id page) (:id pg))
+                                                (= (:id page) (:id pg))) ))
+                pages)
+           (first (filter (fn [pg] (= (:parent_page_id page) (:id pg))) pages)))))
 
-
-
+(defn create-url
+  ([pages page] (create-url pages page '() (:language_code page)))
+  ([pages page names lang-code]
+   (if (or (nil? page) (zero? (:parent_page_id page 0)))
+     (str "/" lang-code "/" (apply str (interpose "/" names)) ".html")
+     (recur pages (-> (filter #(= (:parent_page_id page -1) (:id % -2)) pages) first)  (cons (:name page) names) lang-code))))
 
 (defn order-page []
   (first (page-daf/load-list :where (str "type='shop' and template='orders'") :limit 1)))
