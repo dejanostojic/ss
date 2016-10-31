@@ -1,0 +1,262 @@
+<div class="container-fluid menu-content mixitup">
+    <div class="mix category-cart" data-myorder="1">
+        <div class="row">
+            <div class="col-xs-12 menu-category">
+                <h2>Корпа</h2>
+            </div>
+        </div>
+        <div class="row" id="cart">
+            <div class="cart-products">
+                <div class="container">
+                    <div class="row cart-header">
+                        <div class="col-xs-4 col-sm-5">
+                            <h5 class="product-name">Име јела</h5>
+                        </div>
+                        <div class="col-xs-2">
+                            <h5 class="product-price">Цена</h5>
+                        </div>
+                        <div class="col-xs-2">
+                            <h5 class="product-quantity">Количина</h5>
+                        </div>
+                        <div class="col-xs-2">
+                            <h5 class="product-subtotal">Subtotal</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" data-role="view-cart-container">
+                <div class="row cart-item">
+                    <div class="col-xs-4 col-sm-5 product-name">
+                        <a href="product.html" class="product-thumbnail"><img src="http://placehold.it/100x100" class="" alt=""></a>
+                        <a href="product.html" class="name">Hamburger with fries</a>
+                        <span>Size: L</span>
+                        <span>Color: Black</span>
+                    </div>
+                    <div class="col-xs-2 product-position product-price">
+                        <span class="amount">$15.90</span>
+                    </div>
+                    <div class="col-xs-2 product-position product-quantity">
+                        <div class="quantity">
+                            <input type="text" step="1" name="" value="3" title="Qty" class="input-text qty text" size="4">
+                            <input type="button" value="+" class="plus hidden-xs">
+                            <input type="button" value="-" class="minus hidden-xs">
+                        </div>
+                    </div>
+                    <div class="col-xs-2 product-position product-subtotal">
+                        <span class="amount">$47.70</span>
+                    </div>
+                    <div class="col-xs-1 product-position product-remove">
+                        <a href="#" class="remove" data-djax-exclude="true" title="Remove this item"><i class="icon-close"></i></a>
+                    </div>
+                </div>
+
+                <div class="row cart-subtotal">
+                    <div class="col-xs-2 col-xs-offset-6 col-sm-offset-7 subtotal-txt">
+                        <span>Total:</span>
+                    </div>
+                    <div class="col-xs-2 subtotal">
+                        <span class="amount">$87.10</span>
+                    </div>
+                </div>
+                <div class="row cart-buttons">
+                    <div class="col-xs-12">
+                        <a href="#menu-meals" class="btn btn-dark  continue-shopping">Continue shopping</a>
+                        <div class="product-btn">
+                            <a href="#" class="btn btn-default ">clear shopping cart</a>
+                            <a href="#" class="btn btn-default  ">Update basket</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row cart-buttons">
+                    <div class="col-xs-12">
+                        <div class="coupon-code">
+                            <input type="text" placeholder="Coupon code" class="form-control">
+                            <a href="#" class="btn btn-default ">Apply coupon</a>
+                        </div>
+                        <div class="product-btn">
+                            <a href="#" class="btn btn-color  ">Proceed to checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="reservation" class="mix category-checkout" data-myorder="2">
+        <div class="row">
+            <div class="col-xs-12 menu-category">
+                <h2>Купи</h2>
+            </div>
+        </div>
+        <div class="reservation-content container">
+            <div class="row">
+                <div class="col-sm-4 pull-right">
+                    <!--    <h4>Promo</h4>
+                        <p>TO DO! Prikazati ovde neko promo jelo. Pametna preporuka u zavisnosti šta ima u korpi ili šta je ranije Наручиvao. </p>
+                    --></div>
+                <div class="col-xs-12 col-sm-8 ">
+                    <div class="reservation-form row">
+                        <form role="form" name="date-reservation-form" data-role="order-form" action="/dost/shop/order" method="POST" class="simform" autocomplete="off">
+                            <input type="hidden" name="__anti-forgery-token" value="{% csrf-token %}">
+                            <div class="form-group col-md-12">
+                                <div class="col-md-8">
+                                    <h4>Naručite</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5 class="pull-right"><a href="#" data-role="loged-in-user-fill-form">Postojeći korisnik?</a></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Ime" name="first_name">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="reservation-last-name" placeholder="Prezime" name="last_name">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="reservation-email" placeholder="Email" name="email">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group mobile-input">
+                                    <input type="tel" class="form-control" id="reservation-phone" placeholder="Telefon" name="phone">
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="form-group mobile-input">
+                                    <input type="text" class="form-control" id="reservation-address" placeholder="Adresa" name="shipping_address">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group message">
+                                    <textarea class="form-control input-row-2" id="reservation-message" placeholder="Dodatne napomene" name="extra_info"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group confirm-btn text-right button-submit">
+                                    <button type="submit" class="btn btn-dark button-send">Pošalji porudzbinu</button>
+                                    <div class="message-success alert-success alert hidden"><i class="fa fa-check"></i></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if page-attrs.menu-items|length > 0 %}
+
+    <div class="mix menu-meals category-1" data-myorder="1">
+        <div class="row">
+            <div class="col-xs-12 menu-category">
+                <h2>Оброци</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row items-content">
+                {% for menu in page-attrs.menu-items %}
+                <div class="menu-item" data-role="menu-item">
+                    <div class="item-description" data-role="item-description">
+                        <p>{% format-date menu.date EEE %}</p>
+
+                        <span class="">{{menu.shop_product.shop_product_type.name}}</span>
+
+                        <h5 style="margin-top: 10px;">{{menu.shop_product.name}}</h5>
+                        <p>{{menu.shop_product.ingredients}}</p>
+                        <div class="menu-details">
+                            {% for variation in menu.shop_product.shop_product_type.variations %}
+                            <span class="new-price item-price">{{variation.price|double-format:0}}</span>{% if forloop.first %} /{% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm hide">Наручи</a></div>
+                    </div>
+                    <div class="item-action hide" data-role="item-action">
+                        <div class="menu-details">
+                            {% for variation in menu.shop_product.shop_product_type.variations %}
+                            <div class="shop-button" data-role="add-to-cart">
+                                <label>Količina: </label><input type="number" min="0" value="1" style="width: 40px;" />
+                                <a href="#" class="btn btn-color btn-sm" data-role="shop-product-variation-button" data-product-id="{{menu.shop_product.id}}" data-formatted-date="{% format-date menu.date yyyy-MM-dd %}" data-type-id="{{variation.type_id}}" data-variation-id="{{variation.variation_id}}">{{variation.price|double-format:0}} {{variation.shop_variation.name}}</a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if juices|length > 0 %}
+    <div class="mix menu-meals category-2 drinks-section" data-myorder="2">
+        <div class="row">
+            <div class="col-xs-12 menu-category">
+                <h2>Сокови</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row items-content">
+                {% for juice in juices %}
+                <div class="menu-item" data-role="menu-item">
+                    <div class="item-description">
+                        <h5><span>{{juice.name}}</span><span class="new-price pull-right item-price">{{juice.price|double-format:0}}</span></h5>
+                        <p>{{juice.ingredients}}</p>
+                        <div class="shop-button hide" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">Наручи</a></div>
+                        <div class="item-action menu-details hide" data-role="item-action">
+                            <div class="shop-button" data-role="add-to-cart">
+                                <select class="form-control" data-role="date-select">
+                                    {% options days-till-friday current-date %}
+                                </select>
+                                <label>Količina: </label><input type="number" min="0" value="1" style="width: 40px;" />
+                                <a href="#" class="btn btn-color btn-sm" data-role="shop-product-variation-button" data-product-id="{{juice.id}}" data-type-id="{{juice.product_type_id}}" data-variation-id="0">Dodaj u korpu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if shake|length > 0 %}
+
+    <div class="mix menu-meals category-3 drinks-section" data-myorder="3">
+        <div class="row">
+            <div class="col-xs-12 menu-category">
+                <h2>Смутији</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row items-content">
+                {% for shake in shakes %}
+                <div class="menu-item" data-role="menu-item">
+                    <div class="item-description">
+                        <h5><span>{{shake.name}}</span><span class="new-price pull-right item-price">{{shake.price|double-format:0}}</span></h5>
+                        <p>{{shake.ingredients}}</p>
+                        <div class="shop-button hide" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm">Наручи</a></div>
+                        <div class="item-action menu-details hide" data-role="item-action">
+                            <div class="shop-button" data-role="add-to-cart">
+                                <select class="form-control" data-role="date-select">
+                                    {% options days-till-friday current-date %}
+                                </select>
+                                <label>Količina: </label><input type="number" min="0" value="1" style="width: 40px;" />
+                                <a href="#" class="btn btn-color btn-sm" data-role="shop-product-variation-button" data-product-id="{{shake.id}}" data-type-id="{{shake.product_type_id}}" data-variation-id="0">Dodaj u korpu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+</div>

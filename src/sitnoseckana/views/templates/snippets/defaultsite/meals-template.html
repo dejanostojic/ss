@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{page.title}}</title>
+    <meta name="description" content="">
+    <meta name="msapplication-tap-highlight" content="yes" />
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <link href='http://fonts.googleapis.com/css?family=Cabin:400,400italic,500,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <!--		 Place favicon.ico and apple-touch-icon.png in the root directory -->
+    {% include "snippets/favicons.html" %}
+    <link rel="stylesheet" href="/res/frontend/berg/css/custom.css">
+    <link rel="stylesheet" href="/res/frontend/berg/css/fix.css">
+    <script src="/res/frontend/berg/js/jquery-2.1.0.min.js"></script>
+    <script src="/res/frontend/berg/js/modernizr-2.6.2.min.js"></script>
+    <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?sensor=false&#038;ver=3.0'></script>
+
+</head>
+<body class=" yo-anim-enabled">
+<div class="content-wrapper">
+    <!--content-->
+
+
+    {% include snippets/defaultsite/main-navbar.html %}
+
+    {% include snippets/defaultsite/mobile-nav.html %}
+
+    {% include snippets/defaultsite/section-intro.html with section-intro-class="section-intro section-intro-half" %}
+
+    <div class="section-space"></div>
+    <section class="section-scroll main-section section-padding">
+        <div class="main-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-8 col-md-offset-2">
+                        <h1>{{page.title}}</h1>
+                        <p class="lead">{{page.lead|safe}}</p>
+                        <div class="page-body">{{page.body|safe}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section id="third-menu" class="section-scroll main-section menu">
+
+        {% include snippets/defaultsite/meals.html %}
+
+
+    </section>
+
+    <div id="footer-spacer"></div>
+    {% include snippets/defaultsite/footer.html %}
+    <div class="gallery-wrapper"></div>
+
+    <div id="preloader">
+        <div id="status">
+            <div class="loading-wrapper">
+                <img src="/res/frontend/berg/img/logo2.png" alt="Loading"/>
+            </div>
+        </div>
+        <div id="status-loaded"></div>
+    </div>
+</div>
+<script src="/res/frontend/berg/js/browser.js"></script>
+<script src="/res/frontend/berg/js/jquery.ba-throttle-debounce.min.js"></script>
+<script src="/res/frontend/berg/js/jquery.smooth-scroll.js"></script>
+<script src="/res/frontend/berg/js/matchmedia.js"></script>
+<script src="/res/frontend/berg/js/enquire.min.js"></script>
+<script src="/res/frontend/berg/js/jquery.velocity.min.js"></script>
+<script src="/res/frontend/berg/js/waypoints.js"></script>
+<script src="/res/frontend/berg/js/owl.carousel.js"></script>
+<script src="/res/frontend/berg/js/jquery.backstretch.js"></script>
+<script src="/res/frontend/berg/js/jquery.mb.YTPlayer.js"></script>
+<script src="/res/frontend/berg/js/jquery.parallaxify.js"></script>
+<script src="/res/frontend/berg/js/jquery.imagesloaded.js"></script>
+<script src="/res/frontend/berg/js/jquery.unveil.min.js"></script>
+<script src="/res/frontend/berg/js/jquery.superslides.min.js"></script>
+<script src="/res/frontend/berg/js/jquery.fullPage.min.js"></script>
+<script src="/res/frontend/berg/js/jquery.mixitup.js"></script>
+<script src="/res/frontend/berg/js/jquery.webui-popover.min.js"></script>
+<script src="/res/frontend/berg/js/main.js"></script>
+<script src="/res/frontend/berg/js/dost.main.js"></script>
+</body>
+</html>

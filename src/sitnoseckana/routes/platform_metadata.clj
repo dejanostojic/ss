@@ -1,4 +1,5 @@
-(ns sitnoseckana.routes.platform-metadata)
+(ns sitnoseckana.routes.platform-metadata
+  (:require [sitnoseckana.models.shop-product-type :as shop-product-type]))
 
 (def plugin-list (atom []))
 (def plugin-map (atom  {}))
@@ -35,12 +36,12 @@
                :member-privileges {}
                })
   (add-plugin {
-               :type "app"
-               :menu-name "Pages"
-               :templates {"page" ["index"], "newsletter" ["index"]}
-               :menu-ord 1
-               :rw-rules nil 
-               :admin-privileges {}
+               :type              "app"
+               :menu-name         "Pages"
+               :templates         {"page" ["index"], "newsletter" ["index"], "meals" (mapv :id ((:load-list shop-product-type/daf)))}
+               :menu-ord          1
+               :rw-rules          nil
+               :admin-privileges  {}
                :member-privileges {}
                })
     (add-plugin {

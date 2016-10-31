@@ -3697,13 +3697,53 @@ $(document).ready(function () {
 	    		$('#submit-form-alert').removeClass('hidden');
 	    	},
 	        error: function(jqXHR, textStatus, errorThrown){
-	        	console.log('error');
+	        	console.log('error: ' + errorThrown);
 	        	console.log('textStatus: ' + textStatus);
 	        	console.log('jqXHR: ' + JSON.stringify(jqXHR));
 	        }
 	    });
 	});
 
+
+	$('#ajax-content').on('submit', 'form[method="POST"]', function(e){
+	    e.preventDefault();
+	    if (tinyMCE){
+	    	tinyMCE.triggerSave();
+	    }
+	    var $this = $(this),
+	    	action = $this.attr('action') || document.location,
+	    	formData = new FormData($this[0]),
+	    	serializedForm = $this.serialize();
+	    console.log('req made');
+	    console.log('action: ' + action);
+	    console.log('data: ' + formData);
+	    $.ajax({
+	    	type: 'POST',
+	    	url: action,
+	    	data: serializedForm,
+	        //processData: false,
+	        cache: false,
+	        dataType: 'json',
+	    	success: function( data, textStatus, jqXHR ){
+	    		console.log('req succ');
+	    		console.log('data: ' + data);
+	    		console.log('textStatus: ' + textStatus);
+	    		console.log('jqXHR: ' + JSON.stringify(jqXHR));
+	        	$this.attr('method',"PUT");
+	        	$this.attr('action',data.action);
+	        	$this.find('input[name="id"]').first().val(data.created.id);
+	    		$('#submit-form-alert').removeClass('hidden');
+	    	},
+	        error: function(jqXHR, textStatus, errorThrown){
+	        	console.log('error: ' + errorThrown);
+	        	console.log('textStatus: ' + textStatus);
+	        	console.log('jqXHR: ' + JSON.stringify(jqXHR));
+
+	        }
+	    });
+	});
+
+/*
     $('#ajax-content').on('submit', 'form[method="POST"]', function(e){
 	    e.preventDefault();
 	    if (tinyMCE){
@@ -3730,12 +3770,13 @@ $(document).ready(function () {
 	    		$('#submit-form-alert').removeClass('hidden');
 	    	},
 	        error: function(jqXHR, textStatus, errorThrown){
-	        	console.log('error');
+	        	console.log('error:' + errorThrown);
 	        	console.log('textStatus: ' + textStatus);
 	        	console.log('jqXHR: ' + JSON.stringify(jqXHR));
 	        }
 	    });
     });
+*/
 
 	$('i.prog-show-page-opts').on('click',function(e){
 		e.stopPropagation();

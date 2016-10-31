@@ -28,25 +28,10 @@
     {% include snippets/defaultsite/mobile-nav.html %}
 
 
-    <div class="section-intro"  data-opacity-start="30" data-opacity-end="100" data-background="/res/frontend/berg/img/intro.jpg">
-        <div class="pre-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h1 class="parallax-element-first">Ситно сецкана</h1>
-                        <p class="parallax-element-second"><a href="/jelovnik/meni_okt.10-14.pdf" target="_blank">Преузмите јелевник у ПДФ-у.</a> Телефон: 064/27-33-712</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="arrow1 arrow-section hidden-xs" href="#">
-            <i class="fa fa-angle-down"></i>
-        </a>
-        <a class="arrow2 arrow-section hidden-xs" href="#" style="">
-            <i class="fa fa-angle-up"></i>
-        </a>
-    </div>
+    {% include snippets/defaultsite/section-intro.html with section-intro-class="section-intro" %}
+
     <div class="section-space"></div>
+
     <section id="third-menu" class="section-scroll main-section menu">
         <ul class="list-category shop">
             <li>
@@ -70,50 +55,50 @@
                     <li class="shopping-cart">
                         <span class="filter cart" data-filter=".category-cart">Корпа</span>
                         <ul class="show-cart" data-role="cart-menu-list">
-                           <!-- <li class="product">
-                                <a href="product.html" class="img-product">
-                                    <figure><img src="http://placehold.it/100x100" alt=""/></figure>
-                                </a>
-                                <div class="list-product">
-                                    <a href="product.html"><h5>Burbon Chicken</h5></a>
-                                    <div class="quantity">1</div>
-                                    <div class="price-product">$22.90</div>
-                                    <div class="remove-product"><i class="icon-close"></i></div>
-                                </div>
-                            </li>
-                            <li class="product">
-                                <a href="product.html" class="img-product">
-                                    <figure><img src="http://placehold.it/100x100" alt=""/></figure>
-                                </a>
-                                <div class="list-product">
-                                    <h5>Crock Pot Chicken</h5>
-                                    <div class="quantity">1</div>
-                                    <div class="price-product">$16.50</div>
-                                    <div class="remove-product"><i class="icon-close"></i></div>
-                                </div>
-                            </li>
-                            <li class="product">
-                                <a href="product.html" class="img-product">
-                                    <figure><img src="http://placehold.it/100x100" alt=""/></figure>
-                                </a>
-                                <div class="list-product">
-                                    <h5>Hamburger with fries</h5>
-                                    <div class="quantity">3</div>
-                                    <div class="price-product">$15.90</div>
-                                    <div class="remove-product"><i class="icon-close"></i></div>
-                                </div>
-                            </li>
-                            <li class="summation">
-                                <div class="summation-subtotal">
-                                    <span>subtotal:</span>
-                                    <span class="amount">$87.10</span>
-                                </div>
-                                <div class="btn-cart">
-                                    <button class="btn btn-default" data-filter=".category-cart"><a href="#category-cart">view cart</a></button>
-                                    <button class="btn btn-dark"><a href="cart.html">checkout</a></button>
-                                </div>
-                            </li>
--->
+                            <!-- <li class="product">
+                                 <a href="product.html" class="img-product">
+                                     <figure><img src="http://placehold.it/100x100" alt=""/></figure>
+                                 </a>
+                                 <div class="list-product">
+                                     <a href="product.html"><h5>Burbon Chicken</h5></a>
+                                     <div class="quantity">1</div>
+                                     <div class="price-product">$22.90</div>
+                                     <div class="remove-product"><i class="icon-close"></i></div>
+                                 </div>
+                             </li>
+                             <li class="product">
+                                 <a href="product.html" class="img-product">
+                                     <figure><img src="http://placehold.it/100x100" alt=""/></figure>
+                                 </a>
+                                 <div class="list-product">
+                                     <h5>Crock Pot Chicken</h5>
+                                     <div class="quantity">1</div>
+                                     <div class="price-product">$16.50</div>
+                                     <div class="remove-product"><i class="icon-close"></i></div>
+                                 </div>
+                             </li>
+                             <li class="product">
+                                 <a href="product.html" class="img-product">
+                                     <figure><img src="http://placehold.it/100x100" alt=""/></figure>
+                                 </a>
+                                 <div class="list-product">
+                                     <h5>Hamburger with fries</h5>
+                                     <div class="quantity">3</div>
+                                     <div class="price-product">$15.90</div>
+                                     <div class="remove-product"><i class="icon-close"></i></div>
+                                 </div>
+                             </li>
+                             <li class="summation">
+                                 <div class="summation-subtotal">
+                                     <span>subtotal:</span>
+                                     <span class="amount">$87.10</span>
+                                 </div>
+                                 <div class="btn-cart">
+                                     <button class="btn btn-default" data-filter=".category-cart"><a href="#category-cart">view cart</a></button>
+                                     <button class="btn btn-dark"><a href="cart.html">checkout</a></button>
+                                 </div>
+                             </li>
+ -->
                         </ul>
                     </li>
                     <li class="shopping">
@@ -128,6 +113,12 @@
                 </ul>
             </li>
         </ul>
+    {% include snippets/defaultsite/meals.html %}
+    </section>
+    {% comment %}
+    <!-- OVAKO JE BILO-->
+    <section id="third-menu" class="section-scroll main-section menu">
+
 
         <div class="container-fluid menu-content mixitup">
             <div class="mix category-cart" data-myorder="1">
@@ -212,75 +203,75 @@
                     </div>
                 </div>
             </div>
-             <div id="reservation" class="mix category-checkout" data-myorder="2">
+            <div id="reservation" class="mix category-checkout" data-myorder="2">
                 <div class="row">
                     <div class="col-xs-12 menu-category">
                         <h2>Купи</h2>
                     </div>
                 </div>
-                 <div class="reservation-content container">
-                     <div class="row">
-                         <div class="col-sm-4 pull-right">
-                         <!--    <h4>Promo</h4>
-                             <p>TO DO! Prikazati ovde neko promo jelo. Pametna preporuka u zavisnosti šta ima u korpi ili šta je ranije Наручиvao. </p>
-                         --></div>
-                         <div class="col-xs-12 col-sm-8 ">
-                             <div class="reservation-form row">
-                                 <form role="form" name="date-reservation-form" data-role="order-form" action="/dost/shop/order" method="POST" class="simform" autocomplete="off">
-                                     <input type="hidden" name="__anti-forgery-token" value="{% csrf-token %}">
-                                     <div class="form-group col-md-12">
-                                     <div class="col-md-8">
-                                         <h4>Naručite</h4>
-                                     </div>
-                                     <div class="col-md-4">
-                                         <h5 class="pull-right"><a href="#" data-role="loged-in-user-fill-form">Postojeći korisnik?</a></h5>
-                                     </div>
-                                     </div>
-                                     <div class="col-md-4">
-                                         <div class="form-group">
-                                             <input type="text" class="form-control" placeholder="Ime" name="first_name">
-                                         </div>
-                                     </div>
+                <div class="reservation-content container">
+                    <div class="row">
+                        <div class="col-sm-4 pull-right">
+                            <!--    <h4>Promo</h4>
+                                <p>TO DO! Prikazati ovde neko promo jelo. Pametna preporuka u zavisnosti šta ima u korpi ili šta je ranije Наручиvao. </p>
+                            --></div>
+                        <div class="col-xs-12 col-sm-8 ">
+                            <div class="reservation-form row">
+                                <form role="form" name="date-reservation-form" data-role="order-form" action="/dost/shop/order" method="POST" class="simform" autocomplete="off">
+                                    <input type="hidden" name="__anti-forgery-token" value="{% csrf-token %}">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-8">
+                                            <h4>Naručite</h4>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h5 class="pull-right"><a href="#" data-role="loged-in-user-fill-form">Postojeći korisnik?</a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Ime" name="first_name">
+                                        </div>
+                                    </div>
 
-                                     <div class="col-md-4">
-                                         <div class="form-group">
-                                             <input type="text" class="form-control" id="reservation-last-name" placeholder="Prezime" name="last_name">
-                                         </div>
-                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="reservation-last-name" placeholder="Prezime" name="last_name">
+                                        </div>
+                                    </div>
 
-                                     <div class="col-md-4">
-                                         <div class="form-group">
-                                             <input type="email" class="form-control" id="reservation-email" placeholder="Email" name="email">
-                                         </div>
-                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="reservation-email" placeholder="Email" name="email">
+                                        </div>
+                                    </div>
 
-                                     <div class="col-md-4">
-                                         <div class="form-group mobile-input">
-                                             <input type="tel" class="form-control" id="reservation-phone" placeholder="Telefon" name="phone">
-                                         </div>
-                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group mobile-input">
+                                            <input type="tel" class="form-control" id="reservation-phone" placeholder="Telefon" name="phone">
+                                        </div>
+                                    </div>
 
-                                     <div class="col-md-8">
-                                         <div class="form-group mobile-input">
-                                             <input type="text" class="form-control" id="reservation-address" placeholder="Adresa" name="shipping_address">
-                                         </div>
-                                     </div>
-                                     <div class="col-md-12">
-                                         <div class="form-group message">
-                                             <textarea class="form-control input-row-2" id="reservation-message" placeholder="Dodatne napomene" name="extra_info"></textarea>
-                                         </div>
-                                     </div>
-                                     <div class="col-md-12">
-                                         <div class="form-group confirm-btn text-right button-submit">
-                                             <button type="submit" class="btn btn-dark button-send">Pošalji porudzbinu</button>
-                                             <div class="message-success alert-success alert hidden"><i class="fa fa-check"></i></div>
-                                         </div>
-                                     </div>
-                                 </form>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group mobile-input">
+                                            <input type="text" class="form-control" id="reservation-address" placeholder="Adresa" name="shipping_address">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group message">
+                                            <textarea class="form-control input-row-2" id="reservation-message" placeholder="Dodatne napomene" name="extra_info"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group confirm-btn text-right button-submit">
+                                            <button type="submit" class="btn btn-dark button-send">Pošalji porudzbinu</button>
+                                            <div class="message-success alert-success alert hidden"><i class="fa fa-check"></i></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="mix menu-meals category-1" data-myorder="1">
@@ -292,32 +283,32 @@
                 <div class="container">
                     <div class="row items-content">
                         {% for menu in page-attrs.menu-items %}
-                            <div class="menu-item" data-role="menu-item">
-                                <div class="item-description" data-role="item-description">
-                                    <p>{% format-date menu.date EEE %}</p>
+                        <div class="menu-item" data-role="menu-item">
+                            <div class="item-description" data-role="item-description">
+                                <p>{% format-date menu.date EEE %}</p>
 
-                                    <span class="">{{menu.shop_product.shop_product_type.name}}</span>
+                                <span class="">{{menu.shop_product.shop_product_type.name}}</span>
 
-                                    <h5 style="margin-top: 10px;">{{menu.shop_product.name}}</h5>
-                                    <p>{{menu.shop_product.ingredients}}</p>
-                                    <div class="menu-details">
-                                        {% for variation in menu.shop_product.shop_product_type.variations %}
-                                        <span class="new-price item-price">{{variation.price|double-format:0}}</span>{% if forloop.first %} /{% endif %}
-                                        {% endfor %}
-                                    </div>
-                                    <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm hide">Наручи</a></div>
+                                <h5 style="margin-top: 10px;">{{menu.shop_product.name}}</h5>
+                                <p>{{menu.shop_product.ingredients}}</p>
+                                <div class="menu-details">
+                                    {% for variation in menu.shop_product.shop_product_type.variations %}
+                                    <span class="new-price item-price">{{variation.price|double-format:0}}</span>{% if forloop.first %} /{% endif %}
+                                    {% endfor %}
                                 </div>
-                                <div class="item-action hide" data-role="item-action">
-                                    <div class="menu-details">
-                                        {% for variation in menu.shop_product.shop_product_type.variations %}
-                                        <div class="shop-button" data-role="add-to-cart">
-                                            <label>Količina: </label><input type="number" min="0" value="1" style="width: 40px;" />
-                                            <a href="#" class="btn btn-color btn-sm" data-role="shop-product-variation-button" data-product-id="{{menu.shop_product.id}}" data-formatted-date="{% format-date menu.date yyyy-MM-dd %}" data-type-id="{{variation.type_id}}" data-variation-id="{{variation.variation_id}}">{{variation.price|double-format:0}} {{variation.shop_variation.name}}</a>
-                                        </div>
-                                        {% endfor %}
+                                <div class="shop-button" data-role="show-item-action"><a href="#" class="btn btn-dark btn-sm hide">Наручи</a></div>
+                            </div>
+                            <div class="item-action hide" data-role="item-action">
+                                <div class="menu-details">
+                                    {% for variation in menu.shop_product.shop_product_type.variations %}
+                                    <div class="shop-button" data-role="add-to-cart">
+                                        <label>Količina: </label><input type="number" min="0" value="1" style="width: 40px;" />
+                                        <a href="#" class="btn btn-color btn-sm" data-role="shop-product-variation-button" data-product-id="{{menu.shop_product.id}}" data-formatted-date="{% format-date menu.date yyyy-MM-dd %}" data-type-id="{{variation.type_id}}" data-variation-id="{{variation.variation_id}}">{{variation.price|double-format:0}} {{variation.shop_variation.name}}</a>
                                     </div>
+                                    {% endfor %}
                                 </div>
                             </div>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -385,6 +376,7 @@
 
         </div>
     </section>
+    {% endcomment %}
 
     <div id="footer-spacer"></div>
     {% include snippets/defaultsite/footer.html %}

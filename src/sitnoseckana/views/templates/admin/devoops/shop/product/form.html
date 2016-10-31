@@ -19,6 +19,8 @@
         formattedTypes[i] = {id: productTypes[i].id, text: productTypes[i].name};
     }
     $('#s2_product_type').select2({minimumResultsForSearch: 10, data: formattedTypes, placeholder: {id: '', text: 'Select product type'}, allowClear: true});
+    {% if product.product_type_id %}
     $('#s2_product_type').val({{product.product_type_id}}).trigger('change');
+    {% endif %}
 </script>
 {% endblock %}

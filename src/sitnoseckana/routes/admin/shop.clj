@@ -77,7 +77,8 @@
                             {:product product})))
 
              :post! (fn [ctx]
-                      ((:insert shop-product/daf) (web/keywordize-request (:form-params (:request ctx)) shop-product/dao-settings)))
+                      (cheshire.core/generate-string
+                        ((:insert shop-product/daf) (web/keywordize-request (:form-params (:request ctx)) shop-product/dao-settings))) )
              :put! (fn [ctx]
                      ((:update shop-product/daf) (web/keywordize-request (:form-params (:request ctx)) shop-product/dao-settings)))
              :new? false
@@ -106,9 +107,12 @@
              :post! (fn [ctx]
                       (println "req: " )
                       (clojure.pprint/pprint (web/keywordize-request (:form-params (:request ctx)) shop-product/dao-settings))
-                      ((:insert shop-product/daf) (web/keywordize-request (:form-params (:request ctx)) shop-product/dao-settings))
-                      )
+                      {:created ((:insert shop-product/daf) (web/keywordize-request (:form-params (:request ctx)) shop-product/dao-settings))}
 
+                      )
+             :handle-created (fn [ctx] (cheshire.core/generate-string
+                                         {:created (:created ctx)
+                                          :action (str "/admin/shop/product/" (get-in ctx [:created :id])) }) )
              :handle-ok #(let [media-type (get-in % [:representation :media-type])]
                           (println "request: " (get-in % [:request :params :name]))
                           (condp = media-type

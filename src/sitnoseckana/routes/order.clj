@@ -9,6 +9,7 @@
             [sitnoseckana.util.email]
             [postal.core]
             [sitnoseckana.models.page :as page-daf]
+            [sitnoseckana.models.shop-order-item]
             [sitnoseckana.app.properties :as props]))
 
 (defn calc-total-price
