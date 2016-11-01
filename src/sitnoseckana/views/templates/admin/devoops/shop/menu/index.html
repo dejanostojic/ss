@@ -26,13 +26,36 @@
                     {% endfor %}
                 </ul>
                 {% for type in product-types %}
-                <div id="tabs-types-{{type.id}}">
-                    {% for product in product-list %}
-                        {% ifequal product.product_type_id type.id %}
-                            <div class="external-event" data-product-id="{{product.id}}" data-title="{{product.name}}" data-description="{{product.ingredients}}">{{product.name}}</div>
-                        {% endifequal %}
-                    {% endfor %}
-                </div>
+                    {% if type.weekly %}
+                    <div id="tabs-types-{{type.id}}">
+                        <div class=" filter-products" style="margin-bottom: 73px;">
+                            <form class="js-filter-products" data-target="#tabs-types-{{type.id}}">
+                                <div class="form-group">
+                                    <div class="col-sm-8">
+                                        <input name="name" autocomplete="off" type="text" class="form-control" placeholder="{% fmt shop_product_name_filter_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt page_name_filter_tooltip %}" value="{{product.name}}">
+                                    </div>
+                                </div>
+                                <input name="product_type_id" type="hidden" class="form-control" placeholder="{% fmt shop_product_name_filter_placeholder %}" data-toggle="tooltip" data-placement="bottom" title="{% fmt page_name_filter_tooltip %}" value="{{product.name}}">
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-xs btn-primary btn-label-left">
+                                            <span><i class="fa fa-filter"></i></span>
+                                            {% fmt shop_product_filter %}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        {% for product in product-list %}
+                            {% ifequal product.product_type_id type.id %}
+                                <div class="external-event js-filtering-product" data-product-id="{{product.id}}" data-title="{{product.name}}" data-description="{{product.ingredients}}" title="{{product.ingredients}}">{{product.name}}</div>
+                            {% endifequal %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 {% endfor %}
 
             </div>
@@ -96,7 +119,32 @@ $(document).ready(function() {
                   });
 
               });
-        })
+        });
+
+$('form.js-filter-products input[name="name"]').keyup(function(){
+console.log('change')
+$(this).closest('.js-filter-products').submit();
+});
+        $('form.js-filter-products').submit(function(e){
+            e.preventDefault();
+            var $this = $(this);
+            var nameSearch = $this.find('input[name="name"]').val();
+            var $target = $($this.attr('data-target'));
+            $target.find('.js-filtering-product').show();
+console.log('searching: ' + nameSearch);
+            if (nameSearch !== null && nameSearch !== ''){
+                $target.find('.js-filtering-product').each(function(i){
+                    var $elem = $(this)
+                    var currentName = $elem.attr('data-title') || "";
+                    var nameSearchLower = nameSearch.toLowerCase();
+                    if (currentName.toLowerCase().indexOf(nameSearchLower) > -1){
+                        $elem.show();
+                    }else{
+                        $elem.hide();
+                    }
+                });
+            }
+        });
 });
 </script>
 {% endblock %}

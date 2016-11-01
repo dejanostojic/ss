@@ -23,14 +23,18 @@
             <th>name</th>
             <th>ingrediants</th>
             <th>type</th>
+            <th>actions</th>
         </tr>
         </thead>
         <tbody>
         {% for product in product-list %}
         <tr>
-            <th><a href="/admin/shop/product/{{product.id}}">{{product.name}}</a></th>
-            <th>{{product.ingredients}}</th>
-            <th>{{product.product_type_id}} - {{product.shop_product_type.name}}</th>
+            <td><a href="/admin/shop/product/{{product.id}}">{{product.name}}</a></td>
+            <td>{{product.ingredients}}</td>
+            <td>{{product.product_type_id}} - {{product.shop_product_type.name}}</td>
+            <td><a class="ja-product-delete-modal" data-action="/admin/shop/product/{{product.id}}" data-name="{{product.name}}" href="#">
+                <i class="fa fa-2x fa-trash-o"  style="z-index: 1; color: #ff0000;"></i>
+                delete</a></td>
         </tr>
         {% endfor %}
         </tbody>

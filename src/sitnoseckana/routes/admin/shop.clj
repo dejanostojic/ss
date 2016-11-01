@@ -85,7 +85,8 @@
 
              :handle-no-content (fn [_] "no content")
 
-             :delete! #((:delete shop-product/daf) (:shop-product-type %))
+             :delete! #(do (println "delete request product" (:product %))
+                           (cheshire.core/generate-string {:success ((:delete shop-product/daf) (:product %))}))
 
              :handle-ok (fn [ctx]
                           (parser/render-file (str admin/site "/" admin/theme "/shop/product/form" (if ajax "-ajax") admin/page-suffix)
@@ -97,7 +98,7 @@
                                                          :product-types-json (cheshire.core/generate-string ((:load-list shop-product-type/daf)))))
                                               ))
 
-             :handle-not-found (fn [_] (str "not found page with id: " id))
+             :handle-not-found (fn [_] (str "not product with id: " id))
              )
 
 (defresource product-list [ajax]

@@ -572,4 +572,6 @@ function fillFormWithUserData($form,userData){
          $(this).webuiPopover('show');
      });
 
+    $('a[href="#"]').click(function(e){e.preventDefault();});
+
 }(jQuery))
