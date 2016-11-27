@@ -51,14 +51,8 @@
 	{% include snippets/defaultsite/footer.html %}
 	<div class="gallery-wrapper"></div>
 
-	<div id="preloader">
-		<div id="status">
-			<div class="loading-wrapper">
-				<img src="/res/frontend/berg/img/logo2.png" alt="Loading"/>
-			</div>
-		</div>
-		<div id="status-loaded"></div>
-	</div>
+	{% include snippets/defaultsite/preloader.html %}
+
 </div>
 <script src="/res/frontend/berg/js/browser.js"></script>
 <script src="/res/frontend/berg/js/jquery.ba-throttle-debounce.min.js"></script>
